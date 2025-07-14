@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaGooglePlus } from "react-icons/fa6";
 
-const Login = () => {
+const Signup = () => {
     return (
         <div className='h-screen w-screen flex'>
             <div className='h-full'>
@@ -54,4 +54,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default Signup;

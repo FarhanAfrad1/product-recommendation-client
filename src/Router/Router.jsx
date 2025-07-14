@@ -4,7 +4,6 @@ import {
 } from "react-router"
 import Layout from '../Layout/Layout';
 import Home from '../pages/Home/Home';
-import Login from '../pages/Login/Login';
 import MyQueries from '../pages/My Queries/MyQueries';
 import MyRecommendations from '../pages/My recommendations/MyRecommendations';
 import Queries from '../pages/Queries/Queries';

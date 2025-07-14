@@ -10,7 +10,7 @@ const Layout = () => {
             <div className='p-5 lg:p-10'>
                 <NavBar></NavBar>
             </div>
-            <div>
+            <div className='px-5 lg:px-10'>
                 <Outlet></Outlet>
                 <Footer></Footer>
             </div>
