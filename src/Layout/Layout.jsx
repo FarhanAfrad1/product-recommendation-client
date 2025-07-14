@@ -11,7 +11,9 @@ const Layout = () => {
                 <NavBar></NavBar>
             </div>
             <div className='px-5 lg:px-10'>
-                <Outlet></Outlet>
+                <div className='min-h-screen'>
+                    <Outlet></Outlet>
+                </div>
                 <Footer></Footer>
             </div>
         </div>
