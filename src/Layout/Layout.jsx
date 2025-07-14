@@ -6,10 +6,14 @@ import Footer from '../Components/Footer';
 
 const Layout = () => {
     return (
-        <div>
-            <NavBar></NavBar>
-            <Outlet></Outlet>
-            <Footer></Footer>
+        <div className='bg-gradient-to-br from-[#ECF6FF] to-[#FFE8BB]'>
+            <div className='p-5 lg:p-10'>
+                <NavBar></NavBar>
+            </div>
+            <div>
+                <Outlet></Outlet>
+                <Footer></Footer>
+            </div>
         </div>
     );
 };
