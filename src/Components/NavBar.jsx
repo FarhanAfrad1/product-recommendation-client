@@ -1,7 +1,10 @@
-import React from 'react';
-import { NavLink } from 'react-router';
+import React, { useContext } from 'react';
+import { Link, NavLink } from 'react-router';
+import AuthContext from '../Auth/AuthContext';
+import Swal from 'sweetalert2';
 
 const NavBar = () => {
+    const { user, userLogout } = useContext(AuthContext);
     const link = <>
         <li>
             <NavLink to='/'>Home</NavLink>
@@ -9,16 +12,34 @@ const NavBar = () => {
         <li>
             <NavLink to='/queries'>Queries</NavLink>
         </li>
-        <li>
-            <NavLink to='/recomforme'>Recommendations For Me</NavLink>
-        </li>
-        <li>
-            <NavLink to='/myqueries'>My Queries</NavLink>
-        </li>
-        <li>
-            <NavLink to='/myrecom'>My recommendations</NavLink>
-        </li>
+        {
+            user && <>
+                <li>
+                    <NavLink to='/recomforme'>Recommendations For Me</NavLink>
+                </li>
+                <li>
+                    <NavLink to='/myqueries'>My Queries</NavLink>
+                </li>
+                <li>
+                    <NavLink to='/myrecom'>My recommendations</NavLink>
+                </li>
+            </>
+        }
     </>
+    const handleLogout = () => {
+        userLogout().then(() => {
+            Swal.fire({
+                icon: "success",
+                text: "you are looged out"
+            })
+        }).catch((error) => {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: error.message
+            });
+        });
+    }
     return (
         <div>
             <div className="navbar bg-base-100 shadow-sm p-4 rounded-lg">
@@ -41,7 +62,14 @@ const NavBar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <a className="btn bg-[#180d38] text-white px-8 rounded-full text-lg">Login</a>
+                    {
+                        user ?
+                            <button onClick={handleLogout} className="btn bg-[#180d38] text-white px-8 rounded-full text-lg">Logout</button>
+                            : <Link to='/login'>
+                                <button className="btn bg-[#180d38] text-white px-8 rounded-full text-lg">Login</button>
+                            </Link>
+
+                    }
                 </div>
             </div>
         </div>

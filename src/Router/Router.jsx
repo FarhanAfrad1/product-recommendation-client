@@ -8,6 +8,8 @@ import MyQueries from '../pages/My Queries/MyQueries';
 import MyRecommendations from '../pages/My recommendations/MyRecommendations';
 import Queries from '../pages/Queries/Queries';
 import RecomForMe from '../pages/RecomForMe/RecomForMe';
+import Login from '../pages/Login/Login';
+import Signup from '../pages/Signup/Signup';
 
 const Router = createBrowserRouter([
     {
@@ -35,9 +37,21 @@ const Router = createBrowserRouter([
                 path: '/myrecom',
                 element: <MyRecommendations></MyRecommendations>
             },
+            {
+                path: '/addqueries',
+                element: <Queries></Queries>
+            },
 
         ])
     },
+    {
+        path: '/login',
+        element: <Login></Login>
+    },
+    {
+        path: '/signup',
+        element: <Signup></Signup>
+    }
 ]);
 
 export default Router;

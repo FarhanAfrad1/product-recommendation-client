@@ -1,7 +1,86 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FaGooglePlus } from "react-icons/fa6";
+import { Link, useLocation, useNavigate } from 'react-router';
+import Swal from 'sweetalert2';
+import AuthContext from '../../Auth/AuthContext';
 
 const Signup = () => {
+    const { userRegistration, registrationWithGoogleMama, loading, user } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state || '/';
+
+    const handleRegistration = (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const name = form.name.value;
+        const email = form.email.value;
+        const password = form.password.value;
+        const photourl = form.photourl?.value;
+        console.log(name, email, password, photourl);
+        if (!/[A-Z]/.test(password)) {
+
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: 'your password must contain Uppercase letter',
+            });
+            return;
+        }
+        if (!/[a-z]/.test(password)) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: 'your password must Lowercase letter',
+            });
+            return;
+        }
+        if (password.length < 6) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: 'your password must be atleat 6 caracters',
+            });
+            return;
+        }
+
+        userRegistration(email, password)
+            .then(result => {
+                console.log(result);
+                Swal.fire({
+                    title: "Welcome!",
+                    text: "Login Successfull",
+                    icon: "success"
+                })
+                navigate(from, { replace: true })
+            }).catch(error => {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: error.message
+                });
+            })
+
+    }
+    const handleSignUpWithGoogle = () => {
+        registrationWithGoogleMama()
+            .then(result => {
+                console.log(result);
+                Swal.fire({
+                    title: "Welcome!",
+                    text: "Login Successfull",
+                    icon: "success"
+                })
+                navigate(from, { replace: true })
+
+            }).catch(error => {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: error.message
+                });
+            })
+    }
     return (
         <div className='h-screen w-screen flex'>
             <div className='h-full'>
@@ -11,14 +90,14 @@ const Signup = () => {
                 <div className=''>
                     <div className='flex justify-between '>
                         <h2 className='text-4xl font-bold'><span>r</span>ecom</h2>
-                        <p className='text-lg'>Already have an account? {" "} <span className='cursor-pointer underline text-blue-500'>Sign in</span></p>
+                        <p className='text-lg'>Already have an account? {" "} <Link to='/login'><span className='cursor-pointer underline text-blue-500'>Sign in</span></Link></p>
                     </div>
                     <div className='mt-20 mb-10'>
                         <h1 className='text-5xl font-bold'>Sign Up For Free</h1>
                         <p className='mt-2 text-xl'>Find trusted product recommendations from real people.</p>
                     </div>
                     <div className='w-full'>
-                        <form action="">
+                        <form onSubmit={handleRegistration}>
                             <div className='flex gap-8'>
                                 <fieldset className="fieldset w-full">
                                     <legend className="fieldset-legend">Name</legend>
@@ -43,7 +122,7 @@ const Signup = () => {
                         </form>
                         <div className='mt-20 flex gap-8 items-center '>
                             <span className='text-lg'>OR SIGN IN WITH:</span>
-                            <button className='cursor-pointer active:scale-95 transition-all p-4 bg-gray-300 rounded-full'>
+                            <button onClick={handleSignUpWithGoogle} className='cursor-pointer active:scale-95 transition-all p-4 bg-gray-300 rounded-full'>
                                 <FaGooglePlus size={30} />
                             </button>
                         </div>
