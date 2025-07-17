@@ -1,7 +1,41 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router';
+import AuthContext from '../../Auth/AuthContext';
+import MyQueryCard from './MyQueryCard';
+
+
 
 const MyQueries = () => {
+    const { user, setLoading, loading } = useContext(AuthContext);
+    const [userQueries, setUserQueries] = useState([]);
+    const [column, setColumn] = useState(3)
+
+    useEffect(() => {
+        if (!user || !user.email || !user.accessToken) return;
+
+        setLoading(true);
+
+        fetch(`http://localhost:3000/queries?email=${user?.email}`, {
+            headers: {
+                authorization: `Bearer ${user.accessToken}`
+            }
+        }).then(res => res.json())
+            .then(data => {
+                setUserQueries(data)
+                setLoading(false)
+            })
+    }, [user?.email, user.accessToken, setLoading, user]);
+    console.log(userQueries);
+    const handleGridButton = (col) => {
+        if (col === 1) setColumn(1)
+        else if (col === 2) setColumn(2)
+        else setColumn(3)
+    }
+    const gridColumnClass = {
+        1: 'lg:grid-cols-1',
+        2: 'lg:grid-cols-2',
+        3: 'lg:grid-cols-3'
+    }[column] || 'lg:grid-cols-3';
     return (
         <div className='mt-10'>
             <div className='w-full lg:w-3/4 flex flex-col lg:flex-row mx-auto rounded-2xl items-center'>
@@ -11,17 +45,22 @@ const MyQueries = () => {
                 <div className='flex-1 lg:-ml-20'>
                     <h2 className='text-4xl font-semibold mb-2'>Ask Better, Choose Smarter</h2>
                     <p className='text-xl font-medium mb-4'>Easily manage your product questions and add new ones to get personalized suggestions.</p>
-                    <Link className="bg-[#180d38] text-white px-8 rounded-full text-lg py-1 active:scale-95 transition-all">Add Query</Link>
+                    <Link to='/addqueries' className="bg-[#180d38] text-white px-8 rounded-full text-lg py-1 active:scale-95 transition-all">Add Query</Link>
                 </div>
             </div>
             <div className='mt-20'>
                 <h2 className='text-3xl font-medium'>My Queries</h2>
                 <div className='mt-5'>
                     <div>
-                        <button className='rounded-l-md px-3 py-1 bg-white text-lg fond-medium cursor-pointer hover:bg-amber-100 active:scale-95 transition-all'><span className='font-bold'>one</span> column layout</button>
-                        <button className='px-3 py-1 bg-white text-lg fond-medium border-r border-l cursor-pointer hover:bg-amber-100 active:scale-95 transition-all'><span className='font-bold'>two</span> column layout</button>
-                        <button className='rounded-r-md px-3 py-1 bg-white text-lg fond-medium cursor-pointer hover:bg-amber-100 active:scale-95 transition-all'><span className='font-bold'>three</span> column layout</button>
+                        <button onClick={() => handleGridButton(1)} className='rounded-l-md px-3 py-1 bg-white text-lg fond-medium cursor-pointer hover:bg-amber-100 active:scale-95 transition-all'><span className='font-bold'>one</span> column layout</button>
+                        <button onClick={() => handleGridButton(2)} className='px-3 py-1 bg-white text-lg fond-medium border-r border-l cursor-pointer hover:bg-amber-100 active:scale-95 transition-all'><span className='font-bold'>two</span> column layout</button>
+                        <button onClick={() => handleGridButton(3)} className='rounded-r-md px-3 py-1 bg-white text-lg fond-medium cursor-pointer hover:bg-amber-100 active:scale-95 transition-all'><span className='font-bold'>three</span> column layout</button>
                     </div>
+                </div>
+                <div className={`grid grid-cols-1 ${gridColumnClass} lg:gap-10 mt-5`}>
+                    {
+                        loading ? <>loading</> : userQueries.map(query => <MyQueryCard key={query._id} query={query}></MyQueryCard>)
+                    }
                 </div>
             </div>
         </div>

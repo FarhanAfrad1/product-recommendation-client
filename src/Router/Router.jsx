@@ -10,6 +10,7 @@ import Queries from '../pages/Queries/Queries';
 import RecomForMe from '../pages/RecomForMe/RecomForMe';
 import Login from '../pages/Login/Login';
 import Signup from '../pages/Signup/Signup';
+import AddQueries from '../pages/Queries/AddQueries';
 
 const Router = createBrowserRouter([
     {
@@ -39,7 +40,7 @@ const Router = createBrowserRouter([
             },
             {
                 path: '/addqueries',
-                element: <Queries></Queries>
+                element: <AddQueries></AddQueries>
             },
 
         ])
