@@ -11,6 +11,8 @@ import RecomForMe from '../pages/RecomForMe/RecomForMe';
 import Login from '../pages/Login/Login';
 import Signup from '../pages/Signup/Signup';
 import AddQueries from '../pages/Queries/AddQueries';
+import QueryDetails from '../pages/Queries/QueryDetails';
+import UpdateQuery from '../pages/Queries/UpdateQuery';
 
 const Router = createBrowserRouter([
     {
@@ -42,6 +44,14 @@ const Router = createBrowserRouter([
                 path: '/addqueries',
                 element: <AddQueries></AddQueries>
             },
+            {
+                path: '/querydetails',
+                element: <QueryDetails></QueryDetails>
+            },
+            {
+                path: '/updatequery',
+                element: <UpdateQuery></UpdateQuery>
+            }
 
         ])
     },

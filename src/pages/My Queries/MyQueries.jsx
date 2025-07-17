@@ -45,7 +45,7 @@ const MyQueries = () => {
                 <div className='flex-1 lg:-ml-20'>
                     <h2 className='text-4xl font-semibold mb-2'>Ask Better, Choose Smarter</h2>
                     <p className='text-xl font-medium mb-4'>Easily manage your product questions and add new ones to get personalized suggestions.</p>
-                    <Link to='/addqueries' className="bg-[#180d38] text-white px-8 rounded-full text-lg py-1 active:scale-95 transition-all">Add Query</Link>
+                    <Link to='/addqueries' className="bg-[#180d38] text-white px-8 rounded-full text-lg py-1 active:scale-95 transition-all shadow-[0_4px_12px_rgba(128,0,255,0.4)] active:shadow-white">Add Query</Link>
                 </div>
             </div>
             <div className='mt-20'>
@@ -59,7 +59,15 @@ const MyQueries = () => {
                 </div>
                 <div className={`grid grid-cols-1 ${gridColumnClass} lg:gap-10 mt-5`}>
                     {
-                        loading ? <>loading</> : userQueries.map(query => <MyQueryCard key={query._id} query={query}></MyQueryCard>)
+                        loading ? (<span className="loading loading-spinner loading-xl"></span>) :
+                            userQueries.length === 0 ?
+                                (<div>
+                                    <h3 className='text-4xl font-semibold'>No Query is found!</h3>
+                                    <Link to='/addqueries' className="bg-[#180d38] text-white px-8 rounded-full text-lg py-1 active:scale-95 transition-all mt-10 text-center shadow-black shadow active:shadow-amber-50">Add Query</Link>
+                                </div>) :
+                                (userQueries.map(query =>
+                                    <MyQueryCard key={query._id} query={query}>
+                                    </MyQueryCard>))
                     }
                 </div>
             </div>
