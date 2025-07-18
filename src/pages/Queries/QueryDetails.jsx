@@ -4,6 +4,8 @@ import { useParams } from 'react-router';
 import { FaChalkboardUser, FaRegClock } from 'react-icons/fa6';
 import { MdOutlineInsertComment } from 'react-icons/md';
 import { format } from 'date-fns';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const QueryDetails = () => {
     const { user } = useContext(AuthContext);
@@ -30,8 +32,28 @@ const QueryDetails = () => {
         e.preventDefault();
         const form = e.target;
         const newForm = new FormData(form);
-        const recommededData = Object.entries(newForm.entries());
-        console.log(recommededData)
+        const recommededData = Object.fromEntries(newForm.entries());
+        const recommendation = {
+            ...recommededData,
+            queryId: queryDetails._id,
+            queryTitle: queryDetails.query,
+            productName: queryDetails.name,
+            userEmail: queryDetails.userEmail,
+            userName: queryDetails.userName,
+            recommenderEmail: user.email,
+            recommenderName: user.displayName
+        }
+        console.log(recommendation)
+        axios.post('http://localhost:3000/recommendation', recommendation)
+            .then(res => {
+                if (res.data.insertedId) {
+                    Swal.fire({
+                        title: "Congrats!",
+                        text: "Recommendation is submitted successfully",
+                        icon: "success"
+                    })
+                }
+            }).catch(error => console.log(error))
     }
 
     return (

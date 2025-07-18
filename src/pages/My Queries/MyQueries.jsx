@@ -6,25 +6,25 @@ import MyQueryCard from './MyQueryCard';
 
 
 const MyQueries = () => {
-    const { user, setLoading, loading } = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
     const [userQueries, setUserQueries] = useState([]);
     const [column, setColumn] = useState(3)
-
+    const [loader, setLoader] = useState(false);
     useEffect(() => {
         if (!user || !user.email || !user.accessToken) return;
 
-        setLoading(true);
+        setLoader(true);
 
-        fetch(`http://localhost:3000/queries?email=${user?.email}`, {
+        fetch(`http://localhost:3000/userqueries?email=${user?.email}`, {
             headers: {
                 authorization: `Bearer ${user.accessToken}`
             }
         }).then(res => res.json())
             .then(data => {
                 setUserQueries(data)
-                setLoading(false)
+                setLoader(false)
             })
-    }, [user?.email, user.accessToken, setLoading, user]);
+    }, [user?.email, user.accessToken, user]);
     console.log(userQueries);
     const handleGridButton = (col) => {
         if (col === 1) setColumn(1)
@@ -59,10 +59,10 @@ const MyQueries = () => {
                 </div>
                 <div className={`grid grid-cols-1 ${gridColumnClass} lg:gap-10 mt-5`}>
                     {
-                        loading ? (<span className="loading loading-spinner loading-xl"></span>) :
+                        loader ? (<span className="loading loading-spinner loading-xl"></span>) :
                             userQueries.length === 0 ?
                                 (<div>
-                                    <h3 className='text-4xl font-semibold'>No Query is found!</h3>
+                                    <h3 className='text-4xl font-semibold mb-5'>No Query is found!</h3>
                                     <Link to='/addqueries' className="bg-[#180d38] text-white px-8 rounded-full text-lg py-1 active:scale-95 transition-all mt-10 text-center shadow-black shadow active:shadow-amber-50">Add Query</Link>
                                 </div>) :
                                 (userQueries.map(query =>

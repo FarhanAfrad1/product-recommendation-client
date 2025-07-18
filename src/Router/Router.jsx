@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import {
     createBrowserRouter,
 } from "react-router"
@@ -13,6 +13,9 @@ import Signup from '../pages/Signup/Signup';
 import AddQueries from '../pages/Queries/AddQueries';
 import QueryDetails from '../pages/Queries/QueryDetails';
 import UpdateQuery from '../pages/Queries/UpdateQuery';
+import PrivateRoute from '../PrivateRoute/PrivateRoute';
+
+
 
 const Router = createBrowserRouter([
     {
@@ -30,19 +33,29 @@ const Router = createBrowserRouter([
             },
             {
                 path: '/recomforme',
-                element: <RecomForMe></RecomForMe>
+                element: <PrivateRoute>
+                    <RecomForMe></RecomForMe>
+                </PrivateRoute>
             },
             {
                 path: '/myqueries',
-                element: <MyQueries></MyQueries>
+                element: <PrivateRoute>
+
+                    <MyQueries></MyQueries>
+                </PrivateRoute>
             },
             {
                 path: '/myrecom',
-                element: <MyRecommendations></MyRecommendations>
+                element: <PrivateRoute>
+                    <MyRecommendations></MyRecommendations>
+                </PrivateRoute>
             },
             {
                 path: '/addqueries',
-                element: <AddQueries></AddQueries>
+                element: <PrivateRoute>
+
+                    <AddQueries></AddQueries>
+                </PrivateRoute>
             },
             {
                 path: '/querydetails/:id',
