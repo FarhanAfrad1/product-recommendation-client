@@ -23,14 +23,11 @@ const MyQueryCard = ({ query }) => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:3000/queries/${query._id}`, {
+                fetch(`http://localhost:3000/queries/${query._id}?email=${user.email}`, {
                     method: "DELETE",
                     headers: {
-                        headers: {
-                            authorization: `Bearer ${user.accessToken}`
-                        }
+                        authorization: `Bearer ${user.accessToken}`
                     },
-                    body: JSON.stringify({ email: user.email })
                 }).then(res => res.json())
                     .then(result => {
                         console.log(result);
@@ -77,12 +74,12 @@ const MyQueryCard = ({ query }) => {
                     </span>
                 </div>
                 <div className='space-x-2 flex'>
-                    <Link to='/querydetails'>
+                    <Link to={`/querydetails/${query._id}`}>
                         <span className='cursor-pointer bg-gray-100 px-3 rounded-full active:scale-95 transition-all  py-[1px] shadow-black shadow active:shadow-amber-50'>
                             details
                         </span>
                     </Link>
-                    <Link to='/updatequery'>
+                    <Link to={`/updatequery/${query._id}`}>
                         <span className='cursor-pointer bg-green-100 px-3 rounded-full active:scale-95 transition-all py-[1px] shadow-black shadow active:shadow-amber-50'>
                             update
                         </span>

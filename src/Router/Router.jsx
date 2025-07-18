@@ -45,11 +45,11 @@ const Router = createBrowserRouter([
                 element: <AddQueries></AddQueries>
             },
             {
-                path: '/querydetails',
+                path: '/querydetails/:id',
                 element: <QueryDetails></QueryDetails>
             },
             {
-                path: '/updatequery',
+                path: '/updatequery/:id',
                 element: <UpdateQuery></UpdateQuery>
             }
 
