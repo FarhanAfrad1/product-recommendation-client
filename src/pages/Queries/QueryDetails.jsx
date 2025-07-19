@@ -128,7 +128,7 @@ const QueryDetails = () => {
                             </fieldset>
                             <fieldset className="fieldset w-full">
                                 <legend className="fieldset-legend"> Recommendation Title</legend>
-                                <input type="text" className="input w-full  border-2 focus:outline-0 text-lg p-4" placeholder="Type here" name='ecommendationTitle' />
+                                <input type="text" className="input w-full  border-2 focus:outline-0 text-lg p-4" placeholder="Type here" name='recommendationTitle' />
                             </fieldset>
                         </div>
                         <div>

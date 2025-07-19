@@ -51,7 +51,7 @@ const MyQueries = () => {
             <div className='mt-20'>
                 <h2 className='text-3xl font-medium'>My Queries</h2>
                 <div className='mt-5'>
-                    <div>
+                    <div className='hidden lg:flex'>
                         <button onClick={() => handleGridButton(1)} className='rounded-l-md px-3 py-1 bg-white text-lg fond-medium cursor-pointer hover:bg-amber-100 active:scale-95 transition-all'><span className='font-bold'>one</span> column layout</button>
                         <button onClick={() => handleGridButton(2)} className='px-3 py-1 bg-white text-lg fond-medium border-r border-l cursor-pointer hover:bg-amber-100 active:scale-95 transition-all'><span className='font-bold'>two</span> column layout</button>
                         <button onClick={() => handleGridButton(3)} className='rounded-r-md px-3 py-1 bg-white text-lg fond-medium cursor-pointer hover:bg-amber-100 active:scale-95 transition-all'><span className='font-bold'>three</span> column layout</button>
@@ -66,7 +66,7 @@ const MyQueries = () => {
                                     <Link to='/addqueries' className="bg-[#180d38] text-white px-8 rounded-full text-lg py-1 active:scale-95 transition-all mt-10 text-center shadow-black shadow active:shadow-amber-50">Add Query</Link>
                                 </div>) :
                                 (userQueries.map(query =>
-                                    <MyQueryCard key={query._id} query={query}>
+                                    <MyQueryCard key={query._id} query={query} column={column}>
                                     </MyQueryCard>))
                     }
                 </div>

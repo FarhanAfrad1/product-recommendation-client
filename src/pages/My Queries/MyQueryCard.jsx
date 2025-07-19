@@ -6,7 +6,8 @@ import { Link } from 'react-router';
 import Swal from 'sweetalert2';
 import AuthContext from '../../Auth/AuthContext';
 
-const MyQueryCard = ({ query }) => {
+const MyQueryCard = ({ query, column }) => {
+    const height = column === 3 ? "h-[450px]" : column === 2 ? "h-[550px]" : "h-[650px]"
     const { user } = useContext(AuthContext);
     const { userName, query: queryTitle, productimage, createdAt } = query;
     const date = new Date(createdAt);
@@ -45,9 +46,9 @@ const MyQueryCard = ({ query }) => {
         });
     }
     return (
-        <div className='w-full p-10 rounded-l bg-white mb-3 rounded-lg'>
+        <div className={`${column === 1 ? "w-full lg:w-2/4" : "w-full"} p-10 rounded-l bg-white mb-3 rounded-lg`}>
             <div>
-                <img src={productimage} alt="" className='h-[300px] w-full rounded-xl' />
+                <img src={productimage} alt="" className={`${height} w-full rounded-xl`} />
             </div>
             <h2 className='text-3xl font-semibold my-3 hover:underline'>
                 {queryTitle}</h2>
