@@ -26,21 +26,26 @@ const RecomForMe = () => {
                         <tr>
                             <th></th>
                             <th>Product Info</th>
-                            <th>Recommendation Reason</th>
+                            <th className='hidden md:table-cell'>Recommendation Reason</th>
+                            <th className='hidden md:table-cell'>Recommendation For</th>
                         </tr>
                     </thead>
                     <tbody>
 
                         {
-                            loader ? <span className="loading loading-spinner loading-xl"></span> :
+                            loader && !recomDataForMe ? <tr>
+                                <td colSpan="100%" className="text-center py-8">
+                                    <p className="loading loading-spinner loading-xl"></p>
+                                </td>
+                            </tr> :
                                 recomDataForMe.map((recom, index) => <tr key={recom._id}>
-                                    <td className='font-semibold text-lg'>
+                                    <td className='font-semibold text-lg shadow'>
                                         {index + 1}
                                     </td>
-                                    <td>
+                                    <td className='shadow'>
                                         <div className="flex items-center gap-3">
                                             <div className="avatar">
-                                                <div className="h-[200px] rounded-lg">
+                                                <div className="h-[150px] md:h-[200px] rounded-lg">
                                                     <img
                                                         src={recom.recommendedProductImage}
                                                         alt="Avatar Tailwind CSS Component"
@@ -53,8 +58,15 @@ const RecomForMe = () => {
                                             </div>
                                         </div>
                                     </td>
-                                    <td>
+                                    <td className='shadow hidden md:table-cell'>
                                         <span className="text-xl bg-white leading-11 p-2 rounded">{recom.recommendationReason}</span>
+                                    </td>
+                                    <td className='shadow hidden md:table-cell'>
+                                        <div>
+                                            <div className="font-semibold text-xl">
+                                                {recom.productName}
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>)
                         }
