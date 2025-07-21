@@ -1,4 +1,4 @@
-[![Live Site]](https://product-recommendation-client.web.app)
+[![Live Site]](https://product-recommendation-b8596.web.app/)
 
 # 🛒 Product Recommendation System
 
