@@ -14,6 +14,7 @@ import AddQueries from '../pages/Queries/AddQueries';
 import QueryDetails from '../pages/Queries/QueryDetails';
 import UpdateQuery from '../pages/Queries/UpdateQuery';
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
+import ErrorPage from '../ErrorPage/ErrorPage';
 
 
 
@@ -21,6 +22,7 @@ const Router = createBrowserRouter([
     {
         path: "/",
         element: <Layout></Layout>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: ([
             {
                 index: true,
