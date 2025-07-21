@@ -6,25 +6,32 @@ import MyQueryCard from './MyQueryCard';
 
 
 const MyQueries = () => {
-    const { user } = useContext(AuthContext);
+    const { user, loading } = useContext(AuthContext);
     const [userQueries, setUserQueries] = useState([]);
     const [column, setColumn] = useState(3)
-    const [loader, setLoader] = useState(false);
+    const [loader, setLoader] = useState(true);
     useEffect(() => {
-        if (!user || !user.email || !user.accessToken) return;
+        if (loading || !user || !user.email || !user.accessToken) {
+            console.log("no user");
+            return
+        };
 
         setLoader(true);
+        const fetchUserQueries = async () => {
+            const idToken = await user.getIdToken();
+            fetch(`http://localhost:3000/userqueries?email=${user?.email}`, {
+                headers: {
+                    authorization: `Bearer ${idToken}`
+                }
+            }).then(res => res.json())
+                .then(data => {
+                    setUserQueries(data)
+                    setLoader(false)
+                })
+        }
+        fetchUserQueries();
 
-        fetch(`http://localhost:3000/userqueries?email=${user?.email}`, {
-            headers: {
-                authorization: `Bearer ${user.accessToken}`
-            }
-        }).then(res => res.json())
-            .then(data => {
-                setUserQueries(data)
-                setLoader(false)
-            })
-    }, [user?.email, user.accessToken, user]);
+    }, [user?.email, user.accessToken, user, loading]);
     console.log(userQueries);
     const handleGridButton = (col) => {
         if (col === 1) setColumn(1)

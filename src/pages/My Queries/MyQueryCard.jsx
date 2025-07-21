@@ -24,27 +24,34 @@ const MyQueryCard = ({ query, column }) => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:3000/queries/${query._id}?email=${user.email}`, {
-                    method: "DELETE",
-                    headers: {
-                        authorization: `Bearer ${user.accessToken}`
-                    },
-                }).then(res => res.json())
-                    .then(result => {
-                        console.log(result);
-                        if (result.deletedCount > 0) {
-                            Swal.fire({
-                                title: "Deleted!",
-                                text: "Your file has been deleted.",
-                                icon: "success"
-                            })
-                        }
+                const fetching = async () => {
 
-                    })
+                    const idToken = await user.getIdToken();
+                    fetch(`http://localhost:3000/queries/${query._id}?email=${user.email}`, {
+                        method: "DELETE",
+                        headers: {
+                            authorization: `Bearer ${idToken}`
+                        },
+                    }).then(res => res.json())
+                        .then(result => {
+                            console.log(result);
+                            if (result.deletedCount > 0) {
+                                Swal.fire({
+                                    title: "Deleted!",
+                                    text: "Your file has been deleted.",
+                                    icon: "success"
+                                })
+                            }
+
+                        })
+                }
+                fetching();
 
             }
         });
+
     }
+    {/* You can open the modal using document.getElementById('ID').showModal() method */ }
     return (
         <div className={`${column === 1 ? "w-full lg:w-2/4" : "w-full"} p-10 rounded-l bg-white mb-3 rounded-lg`}>
             <div>

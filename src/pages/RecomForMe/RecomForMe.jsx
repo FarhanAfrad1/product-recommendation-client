@@ -7,16 +7,20 @@ const RecomForMe = () => {
     const [recomDataForMe, setRecomDataForMe] = useState([]);
     useEffect(() => {
         setLoader(true);
-        fetch(`http://localhost:3000/recommendation?email=${user?.email}`, {
-            headers: {
-                authorization: `Bearer ${user.accessToken}`
-            }
-        }).then(res => res.json())
-            .then(data => {
-                setRecomDataForMe(data);
-                setLoader(false);
-            })
-    }, [user.email, user.accessToken])
+        const fetching = async () => {
+            const idToken = await user.getIdToken();
+            fetch(`http://localhost:3000/recommendation?email=${user?.email}`, {
+                headers: {
+                    authorization: `Bearer ${idToken}`
+                }
+            }).then(res => res.json())
+                .then(data => {
+                    setRecomDataForMe(data);
+                    setLoader(false);
+                })
+        }
+        fetching();
+    }, [user.email, user])
     return (
         <div>
             <div className="overflow-x-auto">

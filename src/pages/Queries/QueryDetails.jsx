@@ -14,18 +14,22 @@ const QueryDetails = () => {
     const [date, setDate] = useState(null);
 
     useEffect(() => {
-        fetch(`http://localhost:3000/queries/${id}`, {
-            headers: {
-                authorization: `Bearer ${user.accessToken}`
-            },
-        }).then(res => res.json())
-            .then(data => {
-                setQueryDatails(data)
-                const newDate = new Date(data.createdAt);
-                const formatted = format(newDate, 'MMMM d, yyyy');
-                setDate(formatted);
-            })
-    }, [id, user.accessToken])
+        const fetching = async () => {
+            const idToken = await user.getIdToken();
+            fetch(`http://localhost:3000/queries/${id}`, {
+                headers: {
+                    authorization: `Bearer ${idToken}`
+                },
+            }).then(res => res.json())
+                .then(data => {
+                    setQueryDatails(data)
+                    const newDate = new Date(data.createdAt);
+                    const formatted = format(newDate, 'MMMM d, yyyy');
+                    setDate(formatted);
+                })
+        }
+        fetching();
+    }, [user, id])
 
 
     const handleRecommendation = (e) => {

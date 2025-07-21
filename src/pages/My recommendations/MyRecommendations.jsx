@@ -9,17 +9,22 @@ const MyRecommendations = () => {
     const [myRecomData, setMyRecomData] = useState([]);
     useEffect(() => {
         setLoader(true);
-        fetch(`http://localhost:3000/personalrecommendation?email=${user?.email}`, {
-            headers: {
-                authorization: `Bearer ${user.accessToken}`
-            }
-        }).then(res => res.json())
-            .then(data => {
-                setMyRecomData(data);
-                setLoader(false);
-            })
-    }, [user.email, user.accessToken])
-    const handleDelete = (id) => {
+        const fetching = async () => {
+            const idToken = await user.getIdToken();
+            fetch(`http://localhost:3000/personalrecommendation?email=${user?.email}`, {
+                headers: {
+                    authorization: `Bearer ${idToken}`
+                }
+            }).then(res => res.json())
+                .then(data => {
+                    setMyRecomData(data);
+                    setLoader(false);
+                })
+        }
+        fetching();
+    }, [user.email, user])
+    const handleDelete = async (id) => {
+        const idToken = await user.getIdToken();
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -33,7 +38,7 @@ const MyRecommendations = () => {
                 fetch(`http://localhost:3000/recommendation/${id}?email=${user.email}`, {
                     method: "DELETE",
                     headers: {
-                        authorization: `Bearer ${user.accessToken}`
+                        authorization: `Bearer ${idToken}`
                     },
                 }).then(res => res.json())
                     .then(result => {

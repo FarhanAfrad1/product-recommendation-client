@@ -1,14 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Banner from '../../Components/Banner';
 import { format } from 'date-fns';
-import { FaRegClock } from "react-icons/fa6";
-import { MdOutlineInsertComment } from "react-icons/md";
-import { FaChalkboardUser } from "react-icons/fa6";
+import { useLoaderData } from 'react-router';
+import QueryCardHome from './QueryCardHome';
+import { FaChalkboardUser, FaRegClock } from 'react-icons/fa6';
+import { MdOutlineInsertComment } from 'react-icons/md';
 
 const Home = () => {
+    const [column, setColumn] = useState(3)
+    const gridColumnClass = {
+        1: 'lg:grid-cols-1',
+        2: 'lg:grid-cols-2',
+        3: 'lg:grid-cols-3'
+    }[column] || 'lg:grid-cols-3';
+    const handleGridButton = (col) => {
+        if (col === 1) setColumn(1)
+        else if (col === 2) setColumn(2)
+        else setColumn(3)
+    }
     const date = new Date();
     const formatted = format(date, 'MMMM d, yyyy'); // March 13, 2025
-
+    const allQueries = useLoaderData();
     console.log(formatted)
     return (
         <div className='mt-10'>
@@ -82,6 +94,18 @@ const Home = () => {
             </div>
             <div className='mt-20'>
                 <h2 className='text-2xl font-medium'>Recent Queries</h2>
+                <div className='mt-5'>
+                    <div className='hidden lg:flex'>
+                        <button onClick={() => handleGridButton(1)} className='rounded-l-md px-3 py-1 bg-white text-lg fond-medium cursor-pointer hover:bg-amber-100 active:scale-95 transition-all'><span className='font-bold'>one</span> column layout</button>
+                        <button onClick={() => handleGridButton(2)} className='px-3 py-1 bg-white text-lg fond-medium border-r border-l cursor-pointer hover:bg-amber-100 active:scale-95 transition-all'><span className='font-bold'>two</span> column layout</button>
+                        <button onClick={() => handleGridButton(3)} className='rounded-r-md px-3 py-1 bg-white text-lg fond-medium cursor-pointer hover:bg-amber-100 active:scale-95 transition-all'><span className='font-bold'>three</span> column layout</button>
+                    </div>
+                    <div className={`grid grid-cols-1 ${gridColumnClass} lg:gap-10 mt-5`}>
+                        {
+                            allQueries.map(query => <QueryCardHome key={query._id} query={query} column={column}></QueryCardHome>)
+                        }
+                    </div>
+                </div>
             </div>
         </div>
     );

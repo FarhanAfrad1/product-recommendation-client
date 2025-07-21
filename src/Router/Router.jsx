@@ -25,6 +25,7 @@ const Router = createBrowserRouter([
             {
                 index: true,
                 path: '/',
+                loader: () => fetch('http://localhost:3000/queries'),
                 element: <Home></Home>
             },
             {
