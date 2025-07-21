@@ -25,7 +25,7 @@ const Router = createBrowserRouter([
             {
                 index: true,
                 path: '/',
-                loader: () => fetch('http://localhost:3000/queries'),
+                loader: () => fetch('https://product-recommendation-server-farhans-projects-43eb552e.vercel.app/queries'),
                 element: <Home></Home>
             },
             {

@@ -1,12 +1,62 @@
-# React + Vite
+[![Live Site]](https://product-recommendation-client.web.app)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# 🛒 Product Recommendation System
 
-Currently, two official plugins are available:
+A full-stack web application that allows users to **post product-related queries**, **receive recommendations**, and interact with the community.  
+This project is built with **React (Vite)**, **Firebase Authentication**, **MongoDB**, **Express (Node.js)**, and **JWT** for secure backend operations.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## ✨ Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **User Authentication:**  
+  - Firebase-based login & registration (Google / Email-Password).
+  - JWT token-based backend route protection.
+  
+- **Query Management:**  
+  - Users can create, update, and delete product queries.
+  - Queries are displayed with sorting and filtering options.
+
+- **Recommendations:**  
+  - Add recommendations to a specific query.
+  - Automatic increment/decrement of `recommendationCount`.
+
+- **Search & Filter:**  
+  - Search queries by product name.
+  - Sort queries in **descending order** by `createdAt`.
+
+- **Responsive UI:**  
+  - Fully responsive and mobile-friendly design.
+  - Custom UI built with **Tailwind CSS + DaisyUI**.
+
+- **Dynamic Sections:**  
+  - **My Queries** – Manage your own queries.
+  - **My Recommendations** – Manage your submitted recommendations.
+  - **Stats Section** – Displays platform insights (queries, recommendations, active users).
+  - **FAQ Section** – Answers common user questions.
+
+---
+
+## 🛠️ Tech Stack
+
+**Frontend:**
+- React (Vite)
+- React Router DOM
+- Tailwind CSS + DaisyUI
+- React CountUp
+- React Icons
+- Axios & Fetch API
+
+**Backend:**
+- Node.js + Express
+- MongoDB (CRUD operations)
+- JWT Authentication
+- Firebase Admin SDK for token verification
+
+**Other Tools:**
+- SweetAlert2 for alerts
+- Date-fns for date formatting
+- Firebase Hosting (optional)
+
+---
+

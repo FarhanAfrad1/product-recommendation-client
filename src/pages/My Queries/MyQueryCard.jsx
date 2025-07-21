@@ -27,7 +27,7 @@ const MyQueryCard = ({ query, column }) => {
                 const fetching = async () => {
 
                     const idToken = await user.getIdToken();
-                    fetch(`http://localhost:3000/queries/${query._id}?email=${user.email}`, {
+                    fetch(`https://product-recommendation-server-farhans-projects-43eb552e.vercel.app/queries/${query._id}?email=${user.email}`, {
                         method: "DELETE",
                         headers: {
                             authorization: `Bearer ${idToken}`
