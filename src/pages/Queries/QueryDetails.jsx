@@ -17,7 +17,7 @@ const QueryDetails = () => {
     useEffect(() => {
         const fetching = async () => {
             const idToken = await user.getIdToken();
-            fetch(`https://product-recommendation-server-farhans-projects-43eb552e.vercel.app/queries/${id}`, {
+            fetch(`https://product-recommendation-server-beige.vercel.app/queries/${id}`, {
                 headers: {
                     authorization: `Bearer ${idToken}`
                 },
@@ -28,7 +28,7 @@ const QueryDetails = () => {
                     const formatted = format(newDate, 'MMMM d, yyyy');
                     setDate(formatted);
 
-                    fetch(`https://product-recommendation-server-farhans-projects-43eb552e.vercel.app/recommendations/${id}`)
+                    fetch(`https://product-recommendation-server-beige.vercel.app/recommendations/${id}`)
                         .then(res => res.json())
                         .then(data => setRecommendations(data));
                 })
@@ -53,7 +53,7 @@ const QueryDetails = () => {
             recommenderName: user.displayName
         }
         console.log(recommendation)
-        axios.post('https://product-recommendation-server-farhans-projects-43eb552e.vercel.app/recommendation', recommendation)
+        axios.post('https://product-recommendation-server-beige.vercel.app/recommendation', recommendation)
             .then(res => {
                 if (res.data.insertedId) {
                     Swal.fire({

@@ -21,7 +21,7 @@ const MyQueries = () => {
         setLoader(true);
         const fetchUserQueries = async () => {
             const idToken = await user.getIdToken();
-            fetch(`https://product-recommendation-server-farhans-projects-43eb552e.vercel.app/userqueries?email=${user?.email}`, {
+            fetch(`https://product-recommendation-server-beige.vercel.app/userqueries?email=${user?.email}`, {
                 headers: {
                     authorization: `Bearer ${idToken}`
                 }

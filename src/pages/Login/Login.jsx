@@ -60,7 +60,7 @@ const Login = () => {
     return (
         <div className='h-screen w-screen flex'>
             <div className='h-full'>
-                <img src="/public/login.jpg" alt="" className='hidden lg:h-screen lg:flex' />
+                <img src="/login.jpg" alt="" className='hidden lg:h-screen lg:flex' />
             </div>
             <div className='flex-1 p-8'>
                 <div className=''>

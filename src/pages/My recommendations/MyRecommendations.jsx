@@ -13,7 +13,7 @@ const MyRecommendations = () => {
         setLoader(true);
         const fetching = async () => {
             const idToken = await user.getIdToken();
-            fetch(`https://product-recommendation-server-farhans-projects-43eb552e.vercel.app/personalrecommendation?email=${user?.email}`, {
+            fetch(`https://product-recommendation-server-beige.vercel.app/personalrecommendation?email=${user?.email}`, {
                 headers: {
                     authorization: `Bearer ${idToken}`
                 }
@@ -37,7 +37,7 @@ const MyRecommendations = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`https://product-recommendation-server-farhans-projects-43eb552e.vercel.app/recommendation/${id}?email=${user.email}`, {
+                fetch(`https://product-recommendation-server-beige.vercel.app/recommendation/${id}?email=${user.email}`, {
                     method: "DELETE",
                     headers: {
                         authorization: `Bearer ${idToken}`
