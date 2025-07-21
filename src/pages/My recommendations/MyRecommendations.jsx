@@ -2,8 +2,10 @@ import React, { useContext, useEffect, useState } from 'react';
 import AuthContext from '../../Auth/AuthContext';
 import { MdDeleteForever } from "react-icons/md";
 import Swal from 'sweetalert2';
+import useTitle from '../../Hook/useTitle';
 
 const MyRecommendations = () => {
+    useTitle("My Recommendation | recom");
     const { user } = useContext(AuthContext);
     const [loader, setLoader] = useState(false);
     const [myRecomData, setMyRecomData] = useState([]);

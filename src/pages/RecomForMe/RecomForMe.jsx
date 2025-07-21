@@ -1,7 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
 import AuthContext from '../../Auth/AuthContext';
+import useTitle from '../../Hook/useTitle';
 
 const RecomForMe = () => {
+    useTitle("Recom for Me | recom");
     const { user } = useContext(AuthContext);
     const [loader, setLoader] = useState(false);
     const [recomDataForMe, setRecomDataForMe] = useState([]);

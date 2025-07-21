@@ -6,8 +6,10 @@ import QueryCardHome from './QueryCardHome';
 import { FaChalkboardUser, FaRegClock } from 'react-icons/fa6';
 import { MdLiveHelp, MdOutlineInsertComment } from 'react-icons/md';
 import Stats from './Stats';
+import useTitle from '../../Hook/useTitle';
 
 const Home = () => {
+    useTitle("home | recom");
     const [column, setColumn] = useState(3)
     const gridColumnClass = {
         1: 'lg:grid-cols-1',

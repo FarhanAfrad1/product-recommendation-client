@@ -4,8 +4,10 @@ import MyQueryCard from '../My Queries/MyQueryCard';
 import AuthContext from '../../Auth/AuthContext';
 import axios from 'axios';
 import QueryCard from './QueryCard';
+import useTitle from '../../Hook/useTitle';
 
 const Queries = () => {
+    useTitle("Queris | recom");
     const [column, setColumn] = useState(3);
     const [allQueries, setAllQueries] = useState([]);
     const [loader, setLoader] = useState(false);

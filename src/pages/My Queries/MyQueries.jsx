@@ -2,10 +2,12 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router';
 import AuthContext from '../../Auth/AuthContext';
 import MyQueryCard from './MyQueryCard';
+import useTitle from '../../Hook/useTitle';
 
 
 
 const MyQueries = () => {
+    useTitle("My Queries | recom");
     const { user, loading } = useContext(AuthContext);
     const [userQueries, setUserQueries] = useState([]);
     const [column, setColumn] = useState(3)
