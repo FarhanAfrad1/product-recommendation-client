@@ -54,7 +54,10 @@ const NavBar = () => {
                             {link}
                         </ul>
                     </div>
-                    <a className="text-3xl font-bold">recom</a>
+                    <div className='flex items-center'>
+                        <img src="/new-product.png" alt="" className='w-[70px] h-[50px]' />
+                        <a className="text-3xl font-bold">recom</a>
+                    </div>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1 text-lg">
