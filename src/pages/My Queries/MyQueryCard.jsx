@@ -9,7 +9,7 @@ import AuthContext from '../../Auth/AuthContext';
 const MyQueryCard = ({ query, column }) => {
     const height = column === 3 ? "h-[450px]" : column === 2 ? "h-[550px]" : "h-[650px]"
     const { user } = useContext(AuthContext);
-    const { userName, query: queryTitle, productimage, createdAt } = query;
+    const { userName, query: queryTitle, productimage, createdAt, recommendationCount } = query;
     const date = new Date(createdAt);
     const formatted = format(date, 'MMMM d, yyyy');
     // delete query
@@ -69,7 +69,7 @@ const MyQueryCard = ({ query, column }) => {
                 <div className='flex items-center gap-2'>
                     <MdOutlineInsertComment />
                     <span>
-                        No Comment
+                        Total Recommendation:{" "}<span className='text-lg font-medium'>{recommendationCount}</span>
                     </span>
                 </div>
             </div>

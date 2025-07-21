@@ -4,7 +4,8 @@ import { format } from 'date-fns';
 import { useLoaderData } from 'react-router';
 import QueryCardHome from './QueryCardHome';
 import { FaChalkboardUser, FaRegClock } from 'react-icons/fa6';
-import { MdOutlineInsertComment } from 'react-icons/md';
+import { MdLiveHelp, MdOutlineInsertComment } from 'react-icons/md';
+import Stats from './Stats';
 
 const Home = () => {
     const [column, setColumn] = useState(3)
@@ -60,6 +61,7 @@ const Home = () => {
                         <p className='bg-[#c3bdff] w-40 text-center rounded-full py-1'>Skincare</p>
                         <h2 className='text-3xl font-semibold my-3 underline'>
                             Honest Reviews of the Best Skincare Products</h2>
+
                         <div className='flex justify-between mb-3'>
                             <div className='flex items-center gap-2'>
                                 <FaRegClock />
@@ -107,6 +109,60 @@ const Home = () => {
                     </div>
                 </div>
             </div>
+            <div>
+                <Stats></Stats>
+            </div>
+            <div className="max-w-4xl mx-auto mt-16">
+                <div className="flex justify-center items-center gap-2 mb-10">
+                    <MdLiveHelp size={40} color="#180d38" />
+                    <h2 className="text-4xl font-bold text-[#180d38]">Frequently Asked Questions</h2>
+                </div>
+
+                <div className="join join-vertical w-full space-y-2">
+
+                    <div className="collapse collapse-arrow bg-base-100 border border-base-300 rounded-box">
+                        <input type="checkbox" />
+                        <div className="collapse-title text-xl font-medium">
+                            How do I submit a product recommendation?
+                        </div>
+                        <div className="collapse-content">
+                            <p>Visit the query details page and scroll down to the recommendation form. Fill in the details about the alternative product and submit it — your insights help others!</p>
+                        </div>
+                    </div>
+
+                    <div className="collapse collapse-arrow bg-base-100 border border-base-300 rounded-box">
+                        <input type="checkbox" />
+                        <div className="collapse-title text-xl font-medium">
+                            Can I edit or delete my query or recommendation later?
+                        </div>
+                        <div className="collapse-content">
+                            <p>Yes! You can go to your "My Queries" or "My Recommendations" page and use the edit or delete options provided for each item.</p>
+                        </div>
+                    </div>
+
+                    <div className="collapse collapse-arrow bg-base-100 border border-base-300 rounded-box">
+                        <input type="checkbox" />
+                        <div className="collapse-title text-xl font-medium">
+                            Are my recommendations visible to everyone?
+                        </div>
+                        <div className="collapse-content">
+                            <p>Yes, all approved recommendations will appear publicly under the corresponding query so others can benefit from your experience.</p>
+                        </div>
+                    </div>
+
+                    <div className="collapse collapse-arrow bg-base-100 border border-base-300 rounded-box">
+                        <input type="checkbox" />
+                        <div className="collapse-title text-xl font-medium">
+                            How is the "Recommendation Count" calculated?
+                        </div>
+                        <div className="collapse-content">
+                            <p>Every time a recommendation is submitted for a query, the count is automatically increased. If a recommendation is deleted, the count is decreased.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
         </div>
     );
 };

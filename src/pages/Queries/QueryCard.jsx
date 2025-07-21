@@ -7,7 +7,7 @@ import { Link } from 'react-router';
 
 const QueryCard = ({ query, column }) => {
     const { userName, query: queryTitle, productimage, createdAt,
-        recommendationCount } = query;
+        recommendationCount, name } = query;
     const date = new Date(createdAt);
     const formatted = format(date, 'MMMM d, yyyy');
     const height = column === 3 ? "h-[450px]" : column === 2 ? "h-[550px]" : "h-[650px]"
@@ -18,6 +18,7 @@ const QueryCard = ({ query, column }) => {
             </div>
             <h2 className='text-3xl font-semibold my-3 hover:underline'>
                 {queryTitle}</h2>
+            <p>{name}</p>
             <div className='flex flex-col md:flex-row gap-3 justify-between mb-3 mt-10'>
                 <div className='flex items-center gap-2'>
                     <FaRegClock />

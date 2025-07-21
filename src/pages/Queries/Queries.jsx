@@ -8,11 +8,12 @@ import QueryCard from './QueryCard';
 const Queries = () => {
     const [column, setColumn] = useState(3);
     const [allQueries, setAllQueries] = useState([]);
-    // const { loading, setLoading } = useContext(AuthContext);
     const [loader, setLoader] = useState(false);
+    const [searchText, setSearchText] = useState('');
+
     useEffect(() => {
         setLoader(true);
-        axios.get('http://localhost:3000/queries')
+        axios.get(`http://localhost:3000/queries?search=${searchText}`)
             .then(res => {
                 if (res.data) {
                     console.log(res.data);
@@ -20,7 +21,7 @@ const Queries = () => {
                     setLoader(false);
                 }
             })
-    }, [])
+    }, [searchText])
 
     console.log(allQueries)
     const handleGridButton = (col) => {
@@ -35,6 +36,13 @@ const Queries = () => {
     }[column] || 'lg:grid-cols-3';
     return (
         <div className='mt-10'>
+            <input
+                type="text"
+                placeholder="Search product name"
+                value={searchText}
+                onChange={(e) => setSearchText(e.target.value)}
+                className="border border-gray-400 px-4 py-2 mb-4 rounded"
+            />
             <div className=''>
                 <h2 className='text-3xl font-medium'>All Queries</h2>
                 <div className='mt-5'>

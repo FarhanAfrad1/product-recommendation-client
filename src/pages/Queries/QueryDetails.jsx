@@ -12,6 +12,7 @@ const QueryDetails = () => {
     const { id } = useParams();
     const [queryDetails, setQueryDatails] = useState({});
     const [date, setDate] = useState(null);
+    const [recommendations, setRecommendations] = useState([]);
 
     useEffect(() => {
         const fetching = async () => {
@@ -26,6 +27,10 @@ const QueryDetails = () => {
                     const newDate = new Date(data.createdAt);
                     const formatted = format(newDate, 'MMMM d, yyyy');
                     setDate(formatted);
+
+                    fetch(`http://localhost:3000/recommendations/${id}`)
+                        .then(res => res.json())
+                        .then(data => setRecommendations(data));
                 })
         }
         fetching();
@@ -61,7 +66,7 @@ const QueryDetails = () => {
     }
 
     return (
-        <div>
+        <div className=''>
             <div>
                 <div className='w-full flex flex-col lg:flex-row p-10 rounded-l bg-white mb-3 rounded-lg gap-5'>
                     <div>
@@ -99,12 +104,39 @@ const QueryDetails = () => {
                                 <div className='flex items-center gap-2'>
                                     <MdOutlineInsertComment />
                                     <span>
-                                        No Comment
+                                        {recommendations}
                                     </span>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
+                <div className="mt-20">
+                    <h3 className="text-2xl font-semibold mb-4 flex items-center gap-2"><MdOutlineInsertComment /> All Recommendations</h3>
+                    {
+                        recommendations.length === 0 ? (
+                            <p className="text-gray-500">No recommendations yet. Be the first to suggest!</p>
+                        ) : (
+                            <div className="space-y-5">
+                                {recommendations.map(rec => (
+                                    <div key={rec._id} className="bg-white border rounded-lg p-5 shadow-md">
+                                        <div className="flex gap-4">
+                                            <img src={rec.recommendedProductImage} alt={rec.recommendedproductName} className="w-20 h-20 rounded-md object-cover" />
+                                            <div className="flex-1">
+                                                <h4 className="text-lg font-bold">{rec.recommendedproductName} <span className="text-sm text-gray-500">({rec.productBrand})</span></h4>
+                                                <p className="text-sm text-gray-700 mt-1 italic">"{rec.recommendationTitle}"</p>
+                                                <p className="text-sm mt-2 text-gray-600">{rec.recommendationReason}</p>
+                                                <div className="flex justify-between mt-2 text-sm text-gray-500">
+                                                    <span>Recommended by: {rec.recommenderName}</span>
+                                                    <span>{format(new Date(rec.createdAt), 'MMMM d, yyyy')}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        )
+                    }
                 </div>
             </div>
             <div className='w-full flex flex-col lg:flex-row lg:items-center mt-20'>
@@ -144,7 +176,6 @@ const QueryDetails = () => {
                         <input type="submit" value="Add Recommendation" className='mt-4 border-2 px-8 py-2 rounded-full font-semibold text-white bg-[#180d38] cursor-pointer active:scale-95 shadow-[0_4px_12px_rgba(128,0,255,0.4)] active:shadow-white' />
                     </form>
                 </div>
-
             </div>
         </div>
     );

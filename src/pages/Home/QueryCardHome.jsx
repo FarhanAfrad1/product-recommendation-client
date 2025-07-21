@@ -24,6 +24,7 @@ const QueryCardHome = ({ query, column }) => {
                     <h2 className='text-3xl font-semibold my-3 hover:underline'>
                         {query.query}
                     </h2>
+
                     <div className='flex flex-col'>
                         <span className='text-md'>Product name: <span className='text-lg font-medium'>{" "}{query.name}</span></span>
                         <span className='text-md'>Brand name:<span className='text-lg font-medium'>{" "}{query.brand}</span></span>
