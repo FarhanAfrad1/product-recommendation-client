@@ -21,18 +21,17 @@ const QueryCardHome = ({ query, column }) => {
             </div>
             <div className='flex flex-col justify-between'>
                 <div>
-                    <h2 className='text-3xl font-semibold my-3 hover:underline'>
+                    <h2 className='text-2xl font-semibold my-3 hover:underline'>
                         {query.query}
                     </h2>
 
-                    <div className='flex flex-col'>
+                    <div className='flex flex-col mb-6'>
                         <span className='text-md'>Product name: <span className='text-lg font-medium'>{" "}{query.name}</span></span>
-                        <span className='text-md'>Brand name:<span className='text-lg font-medium'>{" "}{query.brand}</span></span>
                     </div>
                 </div>
 
-                <div>
-                    <div className='flex justify-between mb-3'>
+                <div className='text-md'>
+                    <div className='flex justify-between mb-1'>
                         <div className='flex items-center gap-2'>
                             <FaChalkboardUser size={20} />
                             <span>
@@ -41,7 +40,7 @@ const QueryCardHome = ({ query, column }) => {
                         </div>
                     </div>
                     <hr />
-                    <div className='flex justify-between mt-3'>
+                    <div className='flex justify-between mt-2'>
                         <div className='flex items-center gap-2'>
                             <FaRegClock />
                             <span>

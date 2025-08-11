@@ -57,7 +57,7 @@ const MyQueryCard = ({ query, column }) => {
             <div>
                 <img src={productimage} alt="" className={`${height} w-full rounded-xl`} />
             </div>
-            <h2 className='text-3xl font-semibold my-3 hover:underline'>
+            <h2 className='text-2xl font-semibold my-3 hover:underline'>
                 {queryTitle}</h2>
             <div className='flex justify-between mb-3'>
                 <div className='flex items-center gap-2'>

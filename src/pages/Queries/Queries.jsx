@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { Link, useLoaderData } from 'react-router';
+import React, { useEffect, useState } from 'react';
+import { Link, } from 'react-router';
 import MyQueryCard from '../My Queries/MyQueryCard';
 import AuthContext from '../../Auth/AuthContext';
 import axios from 'axios';
@@ -36,6 +36,11 @@ const Queries = () => {
         2: 'lg:grid-cols-2',
         3: 'lg:grid-cols-3'
     }[column] || 'lg:grid-cols-3';
+    const [currentPage, setCurrentPage] = useState(1);
+    const cardPerPage = 4;
+    const totalPages = Math.ceil(allQueries.length / cardPerPage);
+    const displayCardPerPage = allQueries.slice((currentPage - 1) * cardPerPage, currentPage * cardPerPage);
+
     return (
         <div className='mt-10'>
             <input
@@ -62,12 +67,28 @@ const Queries = () => {
                                     <h3 className='text-4xl font-semibold'>No Query is found!</h3>
                                     <Link to='/addqueries' className="bg-[#180d38] text-white px-8 rounded-full text-lg py-1 active:scale-95 transition-all mt-10 text-center shadow-black shadow active:shadow-amber-50">Add Query</Link>
                                 </div>) :
-                                (allQueries.map(query =>
+                                (displayCardPerPage.map(query =>
                                     <QueryCard key={query._id} query={query} column={column}>
                                     </QueryCard>))
 
                     }
-
+                </div>
+                <div>
+                    {
+                        totalPages > 1 && (
+                            <div className="mt-4 flex justify-center gap-2">
+                                {[...Array(totalPages)].map((_, i) => (
+                                    <button
+                                        key={i}
+                                        className={`btn btn-sm ${currentPage === i + 1 ? 'btn bg-[#180d38] text-white' : 'btn-outline'}`}
+                                        onClick={() => setCurrentPage(i + 1)}
+                                    >
+                                        {i + 1}
+                                    </button>
+                                ))}
+                            </div>
+                        )
+                    }
                 </div>
             </div>
         </div>

@@ -10,7 +10,9 @@ import useTitle from '../../Hook/useTitle';
 
 const Home = () => {
     useTitle("home | recom");
-    const [column, setColumn] = useState(3)
+    const [column, setColumn] = useState(3);
+    const [currentPage, setCurrentPage] = useState(1);
+    const cardPerPage = 3;
     const gridColumnClass = {
         1: 'lg:grid-cols-1',
         2: 'lg:grid-cols-2',
@@ -24,6 +26,9 @@ const Home = () => {
     const date = new Date();
     const formatted = format(date, 'MMMM d, yyyy'); // March 13, 2025
     const allQueries = useLoaderData();
+    const totalPages = Math.ceil(allQueries.length / 3);
+    const displayUserPerPage = allQueries.slice((currentPage - 1) * cardPerPage, currentPage * cardPerPage);
+    console.log(totalPages, displayUserPerPage)
     console.log(formatted)
     return (
         <div className='mt-10'>
@@ -104,10 +109,31 @@ const Home = () => {
                         <button onClick={() => handleGridButton(2)} className='px-3 py-1 bg-white text-lg fond-medium border-r border-l cursor-pointer hover:bg-amber-100 active:scale-95 transition-all'><span className='font-bold'>two</span> column layout</button>
                         <button onClick={() => handleGridButton(3)} className='rounded-r-md px-3 py-1 bg-white text-lg fond-medium cursor-pointer hover:bg-amber-100 active:scale-95 transition-all'><span className='font-bold'>three</span> column layout</button>
                     </div>
-                    <div className={`grid grid-cols-1 ${gridColumnClass} lg:gap-10 mt-5`}>
-                        {
-                            allQueries.map(query => <QueryCardHome key={query._id} query={query} column={column}></QueryCardHome>)
-                        }
+                    <div >
+                        <div className={`grid grid-cols-1 ${gridColumnClass} lg:gap-10 mt-5`}>
+                            {
+                                displayUserPerPage.map(query => <QueryCardHome key={query._id} query={query} column={column}></QueryCardHome>)
+                            }
+                        </div>
+
+                        <div>
+                            {
+                                totalPages > 1 && (
+                                    <div className="mt-4 flex justify-center gap-2">
+                                        {[...Array(totalPages)].map((_, i) => (
+                                            <button
+                                                key={i}
+                                                className={`btn btn-sm ${currentPage === i + 1 ? 'btn bg-[#180d38] text-white' : 'btn-outline'}`}
+                                                onClick={() => setCurrentPage(i + 1)}
+                                            >
+                                                {i + 1}
+                                            </button>
+                                        ))}
+                                    </div>
+                                )
+                            }
+                        </div>
+
                     </div>
                 </div>
             </div>

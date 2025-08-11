@@ -55,7 +55,7 @@ const NavBar = () => {
                         </ul>
                     </div>
                     <div className='flex items-center'>
-                        <img src="/new-product.png" alt="" className='w-[70px] h-[50px]' />
+                        <img src="/new-product.png" alt="" className='w-[50px] h-[50px]' />
                         <a className="text-3xl font-bold">recom</a>
                     </div>
                 </div>

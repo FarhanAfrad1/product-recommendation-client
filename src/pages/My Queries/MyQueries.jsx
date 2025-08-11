@@ -12,6 +12,7 @@ const MyQueries = () => {
     const [userQueries, setUserQueries] = useState([]);
     const [column, setColumn] = useState(3)
     const [loader, setLoader] = useState(true);
+    const [currentPage, setCurrentPage] = useState(1)
     useEffect(() => {
         if (loading || !user || !user.email || !user.accessToken) {
             console.log("no user");
@@ -45,6 +46,9 @@ const MyQueries = () => {
         2: 'lg:grid-cols-2',
         3: 'lg:grid-cols-3'
     }[column] || 'lg:grid-cols-3';
+    const cardPerPage = 3;
+    const totalPages = Math.ceil(userQueries.length / cardPerPage);
+    const displayCardPerPage = userQueries.slice((currentPage - 1) * cardPerPage, currentPage * cardPerPage);
     return (
         <div className='mt-10'>
             <div className='w-full lg:w-3/4 flex flex-col lg:flex-row mx-auto rounded-2xl items-center'>
@@ -74,9 +78,26 @@ const MyQueries = () => {
                                     <h3 className='text-4xl font-semibold mb-5'>No Query is found!</h3>
                                     <Link to='/addqueries' className="bg-[#180d38] text-white px-8 rounded-full text-lg py-1 active:scale-95 transition-all mt-10 text-center shadow-black shadow active:shadow-amber-50">Add Query</Link>
                                 </div>) :
-                                (userQueries.map(query =>
+                                (displayCardPerPage.map(query =>
                                     <MyQueryCard key={query._id} query={query} column={column}>
                                     </MyQueryCard>))
+                    }
+                </div>
+                <div>
+                    {
+                        totalPages > 1 && (
+                            <div className="mt-4 flex justify-center gap-2">
+                                {[...Array(totalPages)].map((_, i) => (
+                                    <button
+                                        key={i}
+                                        className={`btn btn-sm ${currentPage === i + 1 ? 'btn bg-[#180d38] text-white' : 'btn-outline'}`}
+                                        onClick={() => setCurrentPage(i + 1)}
+                                    >
+                                        {i + 1}
+                                    </button>
+                                ))}
+                            </div>
+                        )
                     }
                 </div>
             </div>
