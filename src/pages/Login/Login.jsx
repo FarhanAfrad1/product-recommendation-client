@@ -64,17 +64,17 @@ const Login = () => {
             </div>
             <div className='flex-1 p-8'>
                 <div className=''>
-                    <div className='flex justify-between '>
+                    <div className='flex justify-between items-center'>
                         <h2 className='text-4xl font-bold'><span>r</span>ecom</h2>
-                        <p className='text-lg'>Don't have an account? {" "} <Link to='/signup'><span className='cursor-pointer underline text-blue-500'>Create One</span></Link></p>
+                        <p className='text-sm md:text-lg'>Don't have an account? {" "} <Link to='/signup'><span className='cursor-pointer underline text-blue-500'>Create One</span></Link></p>
                     </div>
                     <div className='mt-20 mb-10'>
-                        <h1 className='text-5xl font-bold'>Sign Up For Free</h1>
+                        <h1 className='text-3xl md:text-5xl font-bold'>Login Please!</h1>
                         <p className='mt-2 text-xl'>Find trusted product recommendations from real people.</p>
                     </div>
                     <div className='w-full'>
                         <form onSubmit={handleLogin}>
-                            <div className='flex gap-8'>
+                            <div className='flex flex-col md:flex-row md:gap-8'>
                                 <fieldset className="fieldset w-full">
                                     <legend className="fieldset-legend">Email</legend>
                                     <input type="email" className="input w-full  border-2 focus:outline-0 text-lg p-4" placeholder="Type here" name='email' />
@@ -84,9 +84,9 @@ const Login = () => {
                                     <input type="text" className="input w-full  border-2 focus:outline-0 text-lg p-4" placeholder="Type here" name='password' />
                                 </fieldset>
                             </div>
-                            <input type="submit" value="Signup" className='mt-4 border-2 px-8 py-2 rounded-full font-semibold text-white bg-[#180d38] cursor-pointer active:scale-95 ' />
+                            <input type="submit" value="Login" className='mt-4 border-2 px-8 py-2 rounded-full font-semibold text-white bg-[#180d38] cursor-pointer active:scale-95 ' />
                         </form>
-                        <div className='mt-20 flex gap-8 items-center '>
+                        <div className='mt-10 md:mt-20 flex gap-8 items-center '>
                             <span className='text-lg'>OR SIGN IN WITH:</span>
                             <button onClick={handleSignInWithGoogle} className='cursor-pointer active:scale-95 transition-all p-4 bg-gray-300 rounded-full'>
                                 <FaGooglePlus size={30} />

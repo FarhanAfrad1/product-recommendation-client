@@ -88,9 +88,9 @@ const Signup = () => {
             </div>
             <div className='flex-1 p-8'>
                 <div className=''>
-                    <div className='flex justify-between '>
+                    <div className='flex justify-between items-center'>
                         <h2 className='text-4xl font-bold'><span>r</span>ecom</h2>
-                        <p className='text-lg'>Already have an account? {" "} <Link to='/login'><span className='cursor-pointer underline text-blue-500'>Sign in</span></Link></p>
+                        <p className='text-sm md:text-lg'>Already have an account? {" "} <Link to='/login'><span className='cursor-pointer underline text-blue-500'>Sign in</span></Link></p>
                     </div>
                     <div className='mt-20 mb-10'>
                         <h1 className='text-5xl font-bold'>Sign Up For Free</h1>
@@ -98,7 +98,7 @@ const Signup = () => {
                     </div>
                     <div className='w-full'>
                         <form onSubmit={handleRegistration}>
-                            <div className='flex gap-8'>
+                            <div className='flex flex-col md:flex-row md:gap-8'>
                                 <fieldset className="fieldset w-full">
                                     <legend className="fieldset-legend">Name</legend>
                                     <input type="text" className="input w-full  border-2 focus:outline-0 text-lg p-4" placeholder="Type here" name='name' />
@@ -108,7 +108,7 @@ const Signup = () => {
                                     <input type="text" className="input w-full  border-2 focus:outline-0 text-lg p-4" placeholder="Type here" name='photourl' />
                                 </fieldset>
                             </div>
-                            <div className='flex gap-8'>
+                            <div className='flex flex-col md:flex-row md:gap-8'>
                                 <fieldset className="fieldset w-full">
                                     <legend className="fieldset-legend">Email</legend>
                                     <input type="email" className="input w-full  border-2 focus:outline-0 text-lg p-4" placeholder="Type here" name='email' />
@@ -120,7 +120,7 @@ const Signup = () => {
                             </div>
                             <input type="submit" value="Signup" className='mt-4 border-2 px-8 py-2 rounded-full font-semibold text-white bg-[#180d38] cursor-pointer active:scale-95 ' />
                         </form>
-                        <div className='mt-20 flex gap-8 items-center '>
+                        <div className='mt-10 md:mt-20 flex gap-8 items-center '>
                             <span className='text-lg'>OR SIGN IN WITH:</span>
                             <button onClick={handleSignUpWithGoogle} className='cursor-pointer active:scale-95 transition-all p-4 bg-gray-300 rounded-full'>
                                 <FaGooglePlus size={30} />
