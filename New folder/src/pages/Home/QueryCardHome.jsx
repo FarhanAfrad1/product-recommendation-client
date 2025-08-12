@@ -15,7 +15,7 @@ const QueryCardHome = ({ query, column }) => {
     const date = new Date(createdAt);
     const formatted = format(date, 'MMMM d, yyyy');
     return (
-        <div className={`w-full flex flex-col ${flexDirection} p-10 rounded-l bg-base-100 mb-3 rounded-lg gap-5`}>
+        <div className={`w-full flex flex-col ${flexDirection} p-10 rounded-l bg-white mb-3 rounded-lg gap-5`}>
             <div>
                 <img src={query.productimage} alt="" className='h-[300px] w-full rounded-xl' />
             </div>

@@ -1,28 +1,63 @@
 import React, { useContext, useEffect, useState } from 'react';
 import AuthContext from '../../Auth/AuthContext';
+import { MdDeleteForever } from "react-icons/md";
+import Swal from 'sweetalert2';
 import useTitle from '../../Hook/useTitle';
 
-const RecomForMe = () => {
-    useTitle("Recom for Me | recom");
+const MyRecommendations = () => {
+    useTitle("My Recommendation | recom");
     const { user } = useContext(AuthContext);
     const [loader, setLoader] = useState(false);
-    const [recomDataForMe, setRecomDataForMe] = useState([]);
+    const [myRecomData, setMyRecomData] = useState([]);
     useEffect(() => {
         setLoader(true);
         const fetching = async () => {
             const idToken = await user.getIdToken();
-            fetch(`https://product-recommendation-server-beige.vercel.app/recommendation?email=${user?.email}`, {
+            fetch(`https://product-recommendation-server-beige.vercel.app/personalrecommendation?email=${user?.email}`, {
                 headers: {
                     authorization: `Bearer ${idToken}`
                 }
             }).then(res => res.json())
                 .then(data => {
-                    setRecomDataForMe(data);
+                    setMyRecomData(data);
                     setLoader(false);
                 })
         }
         fetching();
     }, [user.email, user])
+    const handleDelete = async (id) => {
+        const idToken = await user.getIdToken();
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`https://product-recommendation-server-beige.vercel.app/recommendation/${id}?email=${user.email}`, {
+                    method: "DELETE",
+                    headers: {
+                        authorization: `Bearer ${idToken}`
+                    },
+                }).then(res => res.json())
+                    .then(result => {
+                        console.log(result);
+                        if (result.deletedCount > 0) {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your file has been deleted.",
+                                icon: "success"
+                            })
+                        }
+
+                    })
+
+            }
+        });
+    }
     return (
         <div>
             <div className="overflow-x-auto">
@@ -33,25 +68,25 @@ const RecomForMe = () => {
                             <th></th>
                             <th>Product Info</th>
                             <th className='hidden md:table-cell'>Recommendation Reason</th>
-                            <th className='hidden md:table-cell'>Recommendation For</th>
+                            <th>action</th>
                         </tr>
                     </thead>
                     <tbody>
 
                         {
-                            loader && !recomDataForMe ? <tr>
+                            loader && myRecomData ? <tr>
                                 <td colSpan="100%" className="text-center py-8">
                                     <p className="loading loading-spinner loading-xl"></p>
                                 </td>
                             </tr> :
-                                recomDataForMe.map((recom, index) => <tr key={recom._id}>
+                                myRecomData.map((recom, index) => <tr key={recom._id}>
                                     <td className='font-semibold text-lg shadow'>
                                         {index + 1}
                                     </td>
                                     <td className='shadow'>
                                         <div className="flex items-center gap-3">
                                             <div className="avatar">
-                                                <div className="h-[150px] md:h-[200px] rounded-lg">
+                                                <div className="h-[150px] lg:h-[200px] rounded-lg">
                                                     <img
                                                         src={recom.recommendedProductImage}
                                                         alt="Avatar Tailwind CSS Component"
@@ -59,20 +94,18 @@ const RecomForMe = () => {
                                                 </div>
                                             </div>
                                             <div>
-                                                <div className="font-semibold text-xl">{recom.recommendedproductName}</div>
+                                                <div className="font-semibold text-md lg:text-xl">{recom.recommendedproductName}</div>
                                                 <div className="text-md opacity-50">{recom.productBrand}</div>
                                             </div>
                                         </div>
                                     </td>
                                     <td className='shadow hidden md:table-cell'>
-                                        <span className="text-xl bg-base-100 leading-11 p-2 rounded">{recom.recommendationReason}</span>
+                                        <span className="text-xl bg-white leading-11 p-2 rounded">{recom.recommendationReason}</span>
                                     </td>
-                                    <td className='shadow hidden md:table-cell'>
-                                        <div>
-                                            <div className="font-semibold text-xl">
-                                                {recom.productName}
-                                            </div>
-                                        </div>
+                                    <td className='shadow'>
+                                        <button onClick={() => handleDelete(recom._id)} className='cursor-pointer active:scale-95 transition-all shadow-lg'>
+                                            <MdDeleteForever size={40}></MdDeleteForever>
+                                        </button>
                                     </td>
                                 </tr>)
                         }
@@ -85,4 +118,4 @@ const RecomForMe = () => {
     );
 };
 
-export default RecomForMe;
+export default MyRecommendations;

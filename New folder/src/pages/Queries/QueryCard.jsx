@@ -12,11 +12,11 @@ const QueryCard = ({ query, column }) => {
     const formatted = format(date, 'MMMM d, yyyy');
     const height = column === 3 ? "h-[450px]" : column === 2 ? "h-[550px]" : "h-[650px]"
     return (
-        <div className={`${column === 1 ? "w-full lg:w-2/4" : "w-full"} p-10 rounded-l bg-base-100 mb-3 rounded-lg`}>
+        <div className={`${column === 1 ? "w-full lg:w-2/4" : "w-full"} p-10 rounded-l bg-white mb-3 rounded-lg`}>
             <div>
                 <img src={productimage} alt="" className={`${height} w-full rounded-xl`} />
             </div>
-            <h2 className='text-2xl font-semibold my-3 hover:underline'>
+            <h2 className='text-3xl font-semibold my-3 hover:underline'>
                 {queryTitle}</h2>
             <p>{name}</p>
             <div className='flex flex-col md:flex-row gap-3 justify-between mb-3 mt-10'>

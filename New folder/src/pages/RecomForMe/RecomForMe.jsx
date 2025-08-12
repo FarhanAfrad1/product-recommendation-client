@@ -65,7 +65,7 @@ const RecomForMe = () => {
                                         </div>
                                     </td>
                                     <td className='shadow hidden md:table-cell'>
-                                        <span className="text-xl bg-base-100 leading-11 p-2 rounded">{recom.recommendationReason}</span>
+                                        <span className="text-xl bg-white leading-11 p-2 rounded">{recom.recommendationReason}</span>
                                     </td>
                                     <td className='shadow hidden md:table-cell'>
                                         <div>

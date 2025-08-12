@@ -68,7 +68,7 @@ const QueryDetails = () => {
     return (
         <div className=''>
             <div>
-                <div className='w-full flex flex-col lg:flex-row p-10 rounded-l bg-base-100 mb-3 rounded-lg gap-5'>
+                <div className='w-full flex flex-col lg:flex-row p-10 rounded-l bg-white mb-3 rounded-lg gap-5'>
                     <div>
                         <img src={queryDetails.productimage} alt="" className='h-[300px] w-full rounded-xl' />
                     </div>
@@ -119,7 +119,7 @@ const QueryDetails = () => {
                         ) : (
                             <div className="space-y-5">
                                 {recommendations.map(rec => (
-                                    <div key={rec._id} className="bg-base-100 border rounded-lg p-5 shadow-md">
+                                    <div key={rec._id} className="bg-white border rounded-lg p-5 shadow-md">
                                         <div className="flex gap-4">
                                             <img src={rec.recommendedProductImage} alt={rec.recommendedproductName} className="w-20 h-20 rounded-md object-cover" />
                                             <div className="flex-1">
@@ -173,7 +173,7 @@ const QueryDetails = () => {
                                 <textarea className="textarea h-24 w-full  border-2 focus:outline-0 text-lg p-4" placeholder="Reason" name='recommendationReason'></textarea>
                             </fieldset>
                         </div>
-                        <input type="submit" value="Add Recommendation" className='mt-4 border-2 px-8 py-2 rounded-full font-semibold text-base-content bg-[#180d38] cursor-pointer active:scale-95 shadow-[0_4px_12px_rgba(128,0,255,0.4)] active:shadow-white' />
+                        <input type="submit" value="Add Recommendation" className='mt-4 border-2 px-8 py-2 rounded-full font-semibold text-white bg-[#180d38] cursor-pointer active:scale-95 shadow-[0_4px_12px_rgba(128,0,255,0.4)] active:shadow-white' />
                     </form>
                 </div>
             </div>

@@ -53,7 +53,7 @@ const MyQueryCard = ({ query, column }) => {
     }
     {/* You can open the modal using document.getElementById('ID').showModal() method */ }
     return (
-        <div className={`${column === 1 ? "w-full lg:w-2/4" : "w-full"} p-10 rounded-l  bg-base-100 mb-3 rounded-lg`}>
+        <div className={`${column === 1 ? "w-full lg:w-2/4" : "w-full"} p-10 rounded-l bg-white mb-3 rounded-lg`}>
             <div>
                 <img src={productimage} alt="" className={`${height} w-full rounded-xl`} />
             </div>

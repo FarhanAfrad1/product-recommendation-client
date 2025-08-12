@@ -85,7 +85,7 @@ const UpdateQuery = () => {
                             <textarea className="textarea h-24 w-full  border-2 focus:outline-0 text-lg p-4" placeholder="Reason" name='reason' defaultValue={queryDetail.reason}></textarea>
                         </fieldset>
                     </div>
-                    <input type="submit" value="Update Query" className='mt-4 border-2 px-8 py-2 rounded-full font-semibold text-base-content bg-[#180d38] cursor-pointer active:scale-95 shadow-[0_4px_12px_rgba(128,0,255,0.4)] active:shadow-white' />
+                    <input type="submit" value="Update Query" className='mt-4 border-2 px-8 py-2 rounded-full font-semibold text-white bg-[#180d38] cursor-pointer active:scale-95 shadow-[0_4px_12px_rgba(128,0,255,0.4)] active:shadow-white' />
                 </form>
             </div>
 

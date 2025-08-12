@@ -1,5 +1,16 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 @plugin "daisyui";
+:root[data-theme="light"] {
+  --grad-start: 208 100% 96%; /* #ECF6FF */
+  --grad-end:   40 100% 86%;  /* #FFE8BB */
+}
+
+/* Dark theme values (pick what you like) */
+:root[data-theme="dark"] {
+  --grad-start: 217 33% 17%;  /* ~neutral-900 */
+  --grad-end:   222 15% 23%;  /* ~neutral-800 */
+}
 
 ul a.active{
     border-bottom: 4px solid #180d38;

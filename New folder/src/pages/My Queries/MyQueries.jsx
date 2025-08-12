@@ -58,16 +58,16 @@ const MyQueries = () => {
                 <div className='flex-1 lg:-ml-20'>
                     <h2 className='text-4xl font-semibold mb-2'>Ask Better, Choose Smarter</h2>
                     <p className='text-xl font-medium mb-4'>Easily manage your product questions and add new ones to get personalized suggestions.</p>
-                    <Link to='/addqueries' className="bg-[#180d38] text-base-content px-8 rounded-full text-lg py-1 active:scale-95 transition-all shadow-[0_4px_12px_rgba(128,0,255,0.4)] active:shadow-white">Add Query</Link>
+                    <Link to='/addqueries' className="bg-[#180d38] text-white px-8 rounded-full text-lg py-1 active:scale-95 transition-all shadow-[0_4px_12px_rgba(128,0,255,0.4)] active:shadow-white">Add Query</Link>
                 </div>
             </div>
             <div className='mt-20'>
                 <h2 className='text-3xl font-medium'>My Queries</h2>
                 <div className='mt-5'>
                     <div className='hidden lg:flex'>
-                        <button onClick={() => handleGridButton(1)} className='rounded-l-md px-3 py-1 bg-base-100 text-lg fond-medium cursor-pointer hover:bg-amber-100 active:scale-95 transition-all'><span className='font-bold'>one</span> column layout</button>
-                        <button onClick={() => handleGridButton(2)} className='px-3 py-1 bg-base-100 text-lg fond-medium border-r border-l cursor-pointer hover:bg-amber-100 active:scale-95 transition-all'><span className='font-bold'>two</span> column layout</button>
-                        <button onClick={() => handleGridButton(3)} className='rounded-r-md px-3 py-1 bg-base-100 text-lg fond-medium cursor-pointer hover:bg-amber-100 active:scale-95 transition-all'><span className='font-bold'>three</span> column layout</button>
+                        <button onClick={() => handleGridButton(1)} className='rounded-l-md px-3 py-1 bg-white text-lg fond-medium cursor-pointer hover:bg-amber-100 active:scale-95 transition-all'><span className='font-bold'>one</span> column layout</button>
+                        <button onClick={() => handleGridButton(2)} className='px-3 py-1 bg-white text-lg fond-medium border-r border-l cursor-pointer hover:bg-amber-100 active:scale-95 transition-all'><span className='font-bold'>two</span> column layout</button>
+                        <button onClick={() => handleGridButton(3)} className='rounded-r-md px-3 py-1 bg-white text-lg fond-medium cursor-pointer hover:bg-amber-100 active:scale-95 transition-all'><span className='font-bold'>three</span> column layout</button>
                     </div>
                 </div>
                 <div className={`grid grid-cols-1 ${gridColumnClass} lg:gap-10 mt-5`}>
@@ -76,7 +76,7 @@ const MyQueries = () => {
                             userQueries.length === 0 ?
                                 (<div>
                                     <h3 className='text-4xl font-semibold mb-5'>No Query is found!</h3>
-                                    <Link to='/addqueries' className="bg-[#180d38] text-base-content px-8 rounded-full text-lg py-1 active:scale-95 transition-all mt-10 text-center shadow-black shadow active:shadow-amber-50">Add Query</Link>
+                                    <Link to='/addqueries' className="bg-[#180d38] text-white px-8 rounded-full text-lg py-1 active:scale-95 transition-all mt-10 text-center shadow-black shadow active:shadow-amber-50">Add Query</Link>
                                 </div>) :
                                 (displayCardPerPage.map(query =>
                                     <MyQueryCard key={query._id} query={query} column={column}>
@@ -90,7 +90,7 @@ const MyQueries = () => {
                                 {[...Array(totalPages)].map((_, i) => (
                                     <button
                                         key={i}
-                                        className={`btn btn-sm ${currentPage === i + 1 ? 'btn bg-[#180d38] text-base-content' : 'btn-outline'}`}
+                                        className={`btn btn-sm ${currentPage === i + 1 ? 'btn bg-[#180d38] text-white' : 'btn-outline'}`}
                                         onClick={() => setCurrentPage(i + 1)}
                                     >
                                         {i + 1}

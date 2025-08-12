@@ -60,7 +60,7 @@ const Banner = () => {
                         <button
                             key={index}
                             onClick={() => setCurrent(index)}
-                            className={`h-3 w-3 rounded-full ${current === index ? 'bg-base-100' : 'bg-gray-400'
+                            className={`h-3 w-3 rounded-full ${current === index ? 'bg-white' : 'bg-gray-400'
                                 }`}
                         />
                     ))}

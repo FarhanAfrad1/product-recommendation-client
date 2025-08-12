@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router';
 import AuthContext from '../Auth/AuthContext';
 import Swal from 'sweetalert2';
-import ThemeToggle from './ThemeToggle';
 
 const NavBar = () => {
     const { user, userLogout } = useContext(AuthContext);
@@ -70,7 +69,7 @@ const NavBar = () => {
                         user ?
                             <button onClick={handleLogout} className="btn bg-[#180d38] text-white px-8 rounded-full text-lg">Logout</button>
                             : <Link to='/login'>
-                                <button className="btn bg-[#180d38] text-white  px-8 rounded-full text-lg">Login</button>
+                                <button className="btn bg-[#180d38] text-white px-8 rounded-full text-lg">Login</button>
                             </Link>
 
                     }

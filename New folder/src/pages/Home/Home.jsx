@@ -34,8 +34,8 @@ const Home = () => {
         <div className='mt-10'>
             <div className='flex flex-col lg:flex-row'>
                 <div className='flex-1'>
-                    <div className='w-full lg:w-4/5 p-10 rounded-l bg-base-100 mb-3 rounded-lg'>
-                        <p className='bg-[#f2e7dc] w-40 text-center rounded-full py-1 text-black'>laptops</p>
+                    <div className='w-full lg:w-4/5 p-10 rounded-l bg-white mb-3 rounded-lg'>
+                        <p className='bg-[#f2e7dc] w-40 text-center rounded-full py-1'>laptops</p>
                         <h2 className='text-3xl font-semibold my-3 underline'>Top 10 Laptops of 2025: Unbiased Reviews for Every Need</h2>
                         <div className='flex justify-between mb-3'>
                             <div className='flex items-center gap-2'>
@@ -59,13 +59,13 @@ const Home = () => {
                                     By: recom
                                 </span>
                             </div>
-                            <span className='cursor-pointer bg-base-200 px-3 rounded-full active:scale-95 transition-all'>
+                            <span className='cursor-pointer bg-gray-100 px-3 rounded-full active:scale-95 transition-all'>
                                 details
                             </span>
                         </div>
                     </div>
-                    <div className='hover:bg-base-100 w-full lg:w-4/5 p-10 rounded-lg'>
-                        <p className='bg-[#c3bdff] w-40 text-center rounded-full py-1 text-black'>Skincare</p>
+                    <div className='hover:bg-white w-full lg:w-4/5 p-10 rounded-lg'>
+                        <p className='bg-[#c3bdff] w-40 text-center rounded-full py-1'>Skincare</p>
                         <h2 className='text-3xl font-semibold my-3 underline'>
                             Honest Reviews of the Best Skincare Products</h2>
 
@@ -91,7 +91,7 @@ const Home = () => {
                                     By: recom
                                 </span>
                             </div>
-                            <span className='cursor-pointer bg-base-200 px-3 rounded-full active:scale-95 transition-all'>
+                            <span className='cursor-pointer bg-gray-100 px-3 rounded-full active:scale-95 transition-all'>
                                 details
                             </span>
                         </div>
@@ -105,9 +105,9 @@ const Home = () => {
                 <h2 className='text-2xl font-medium'>Recent Queries</h2>
                 <div className='mt-5'>
                     <div className='hidden lg:flex'>
-                        <button onClick={() => handleGridButton(1)} className='rounded-l-md px-3 py-1 bg-base-100 text-lg fond-medium cursor-pointer hover:bg-amber-100 active:scale-95 transition-all'><span className='font-bold'>one</span> column layout</button>
-                        <button onClick={() => handleGridButton(2)} className='px-3 py-1 bg-base-100 text-lg fond-medium border-r border-l cursor-pointer hover:bg-amber-100 active:scale-95 transition-all'><span className='font-bold'>two</span> column layout</button>
-                        <button onClick={() => handleGridButton(3)} className='rounded-r-md px-3 py-1 bg-base-100 text-lg fond-medium cursor-pointer hover:bg-amber-100 active:scale-95 transition-all'><span className='font-bold'>three</span> column layout</button>
+                        <button onClick={() => handleGridButton(1)} className='rounded-l-md px-3 py-1 bg-white text-lg fond-medium cursor-pointer hover:bg-amber-100 active:scale-95 transition-all'><span className='font-bold'>one</span> column layout</button>
+                        <button onClick={() => handleGridButton(2)} className='px-3 py-1 bg-white text-lg fond-medium border-r border-l cursor-pointer hover:bg-amber-100 active:scale-95 transition-all'><span className='font-bold'>two</span> column layout</button>
+                        <button onClick={() => handleGridButton(3)} className='rounded-r-md px-3 py-1 bg-white text-lg fond-medium cursor-pointer hover:bg-amber-100 active:scale-95 transition-all'><span className='font-bold'>three</span> column layout</button>
                     </div>
                     <div >
                         <div className={`grid grid-cols-1 ${gridColumnClass} lg:gap-10 mt-5`}>
@@ -142,8 +142,8 @@ const Home = () => {
             </div>
             <div className="max-w-4xl mx-auto mt-16">
                 <div className="flex justify-center items-center gap-2 mb-10">
-                    <MdLiveHelp size={40} className="text-[#180d38] dark:text-primary" />
-                    <h2 className="text-4xl font-bold text-[#180d38] dark:text-base-content">Frequently Asked Questions</h2>
+                    <MdLiveHelp size={40} color="#180d38" />
+                    <h2 className="text-4xl font-bold text-[#180d38]">Frequently Asked Questions</h2>
                 </div>
 
                 <div className="join join-vertical w-full space-y-2">
