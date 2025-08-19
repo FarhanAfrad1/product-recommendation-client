@@ -7,6 +7,7 @@ import { FaChalkboardUser, FaRegClock } from 'react-icons/fa6';
 import { MdLiveHelp, MdOutlineInsertComment } from 'react-icons/md';
 import Stats from './Stats';
 import useTitle from '../../Hook/useTitle';
+import NewsletterSection from '../../Components/NewsletterSection';
 
 const Home = () => {
     useTitle("home | recom");
@@ -189,6 +190,9 @@ const Home = () => {
                     </div>
 
                 </div>
+            </div>
+            <div>
+                <NewsletterSection></NewsletterSection>
             </div>
 
         </div>
