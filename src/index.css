@@ -12,7 +12,22 @@
   --grad-end:   222 15% 23%;  /* ~neutral-800 */
 }
 
-ul a.active{
-    border-bottom: 4px solid #180d38;
-    transition: all;
+ul a {
+  position: relative;
+  padding-bottom: 4px; /* space for underline */
+}
+
+ul a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 4px;
+  background-color: #180d38;
+  transition: width 0.3s ease;
+}
+
+ul a.active::after {
+  width: 100%; /* animate underline expanding */
 }

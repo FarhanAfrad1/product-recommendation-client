@@ -12,7 +12,7 @@ const Layout = () => {
     from-[hsl(var(--grad-start))]
     to-[hsl(var(--grad-end))]
     text-base-content relative'>
-            <div className='absolute left-10 top-40'>
+            <div className='absolute left-10 top-35'>
 
                 <ThemeToggle></ThemeToggle>
             </div>
