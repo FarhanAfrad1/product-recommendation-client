@@ -118,7 +118,7 @@ const Signup = () => {
                                     <input type="text" className="input w-full  border-2 focus:outline-0 text-lg p-4" placeholder="Type here" name='password' />
                                 </fieldset>
                             </div>
-                            <input type="submit" value="Signup" className='mt-4 border-2 px-8 py-2 rounded-full font-semibold text-base-content bg-[#180d38] cursor-pointer active:scale-95 ' />
+                            <input type="submit" value="Signup" className='mt-4 border-2 px-8 py-2 rounded-full font-semibold text-white bg-[#180d38] cursor-pointer active:scale-95 ' />
                         </form>
                         <div className='mt-10 md:mt-20 flex gap-8 items-center '>
                             <span className='text-lg'>OR SIGN IN WITH:</span>

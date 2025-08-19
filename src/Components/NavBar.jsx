@@ -13,6 +13,9 @@ const NavBar = () => {
         <li>
             <NavLink to='/queries'>Queries</NavLink>
         </li>
+        <li>
+            <NavLink to='/blog'>Blogs</NavLink>
+        </li>
         {
             user && <>
                 <li>

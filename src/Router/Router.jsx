@@ -15,6 +15,7 @@ import QueryDetails from '../pages/Queries/QueryDetails';
 import UpdateQuery from '../pages/Queries/UpdateQuery';
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import ErrorPage from '../ErrorPage/ErrorPage';
+import BlogsSection from '../pages/Blog/BlogsSection';
 
 
 
@@ -33,6 +34,10 @@ const Router = createBrowserRouter([
             {
                 path: '/queries',
                 element: <Queries></Queries>
+            },
+            {
+                path: '/blog',
+                element: <BlogsSection></BlogsSection>
             },
             {
                 path: '/recomforme',
