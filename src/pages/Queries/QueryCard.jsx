@@ -43,7 +43,7 @@ const QueryCard = ({ query, column }) => {
                 </div>
                 <div className='space-x-2'>
                     <Link to={`/querydetails/${query._id}`}>
-                        <span className='cursor-pointer bg-gray-100 px-3 rounded-full active:scale-95 transition-all  py-[1px] shadow-black shadow active:shadow-amber-50'>
+                        <span className='cursor-pointer bg-gray-100 px-3 rounded-full active:scale-95 transition-all  py-[1px] shadow-black dark:text-black shadow active:shadow-amber-50'>
                             Recommend
                         </span>
                     </Link>

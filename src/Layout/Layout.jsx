@@ -6,13 +6,14 @@ import ThemeToggle from '../Components/ThemeToggle';
 
 
 const Layout = () => {
+
     return (
         <div className=' min-h-screen
     bg-gradient-to-br
     from-[hsl(var(--grad-start))]
     to-[hsl(var(--grad-end))]
     text-base-content relative'>
-            <div className='absolute left-10 top-35'>
+            <div className='absolute left-6 md:left-10 top-28 md:top-35'>
                 <ThemeToggle></ThemeToggle>
             </div>
             <div className='p-5 lg:p-10'>

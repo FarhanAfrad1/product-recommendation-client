@@ -11,7 +11,7 @@ const UpdateQuery = () => {
     useEffect(() => {
         const fetching = async () => {
             const idToken = await user.getIdToken();
-            fetch(`https://product-recommendation-server-beige.vercel.app/queries/${id}`, {
+            fetch(`http://localhost:3000/queries/${id}`, {
                 headers: {
                     authorization: `Bearer ${idToken}`
                 },
@@ -34,7 +34,7 @@ const UpdateQuery = () => {
         }
         const idToken = await user.getIdToken();
         console.log(queryDetail);
-        axios.patch(`https://product-recommendation-server-beige.vercel.app/queries/${id}`, updatedQuery, {
+        axios.patch(`http://localhost:3000/queries/${id}`, updatedQuery, {
             headers: {
                 authorization: `Bearer ${idToken}`
             }

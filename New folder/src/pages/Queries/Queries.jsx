@@ -15,7 +15,7 @@ const Queries = () => {
 
     useEffect(() => {
         setLoader(true);
-        axios.get(`https://product-recommendation-server-beige.vercel.app/queries?search=${searchText}`)
+        axios.get(`http://localhost:3000/queries?search=${searchText}`)
             .then(res => {
                 if (res.data) {
                     console.log(res.data);

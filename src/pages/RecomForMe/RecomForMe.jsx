@@ -11,7 +11,7 @@ const RecomForMe = () => {
         setLoader(true);
         const fetching = async () => {
             const idToken = await user.getIdToken();
-            fetch(`https://product-recommendation-server-beige.vercel.app/recommendation?email=${user?.email}`, {
+            fetch(`http://localhost:3000/recommendation?email=${user?.email}`, {
                 headers: {
                     authorization: `Bearer ${idToken}`
                 }

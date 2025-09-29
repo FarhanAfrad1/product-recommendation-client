@@ -27,7 +27,7 @@ const Router = createBrowserRouter([
             {
                 index: true,
                 path: '/',
-                loader: () => fetch('https://product-recommendation-server-beige.vercel.app/queries'),
+                loader: () => fetch('http://localhost:3000/queries'),
                 element: <Home></Home>
             },
             {

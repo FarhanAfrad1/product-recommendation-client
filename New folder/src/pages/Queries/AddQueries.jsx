@@ -19,7 +19,7 @@ const AddQueries = () => {
             ...formObject
         }
         console.log(queryDetail);
-        axios.post('https://product-recommendation-server-beige.vercel.app/queries', queryDetail)
+        axios.post('http://localhost:3000/queries', queryDetail)
             .then(res => {
                 if (res.data.insertedId) {
                     Swal.fire({

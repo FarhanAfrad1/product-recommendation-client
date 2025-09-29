@@ -20,7 +20,7 @@ const Card = ({ Icon, count, label }) => (
 
         {/* number */}
         <p className="my-2 text-5xl font-extrabold text-[#180d38] dark:text-base-content">
-            <CountUp end={count} duration={5} />+
+            <CountUp end={count} duration={30} />+
         </p>
 
         {/* label */}
@@ -34,11 +34,11 @@ const Stats = () => {
     return (
         <div className="mt-16">
             {/* heading */}
-            <div className="flex justify-center items-center gap-2 mb-10">
-                <MdInsights size={40} className="text-[#180d38] dark:text-primary" />
-                <h2 className="text-4xl font-bold text-[#180d38] dark:text-base-content">
+            <div className="mb-10">
+                <h2 className="text-2xl font-medium dark:text-base-content">
                     Platform Insights
                 </h2>
+                <p className='mt-1'>Get a quick snapshot of how our community is growing and engaging. These numbers reflect real queries, recommendations, and active users contributing to the platform. Together, they highlight the impact and credibility of our product recommendation system.</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

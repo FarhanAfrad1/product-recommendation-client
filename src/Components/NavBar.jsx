@@ -6,6 +6,7 @@ import ThemeToggle from './ThemeToggle';
 
 const NavBar = () => {
     const { user, userLogout } = useContext(AuthContext);
+    console.log(user)
     const link = <>
         <li>
             <NavLink to='/'>Home</NavLink>
@@ -45,8 +46,8 @@ const NavBar = () => {
         });
     }
     return (
-        <div className='sticky top-0'>
-            <div className="navbar bg-base-100 shadow-sm p-4 rounded-lg sticky top-0 z-50">
+        <div className='w-full'>
+            <div className="navbar bg-base-100 shadow-sm p-4 rounded-lg">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -58,8 +59,20 @@ const NavBar = () => {
                             {link}
                         </ul>
                     </div>
-                    <div className='flex items-center'>
-                        <img src="/new-product.png" alt="" className='w-[50px] h-[50px]' />
+                    <div className='hidden xl:flex items-center'>
+                        {/* Light mode logo (black) */}
+                        <img
+                            src="/lightmode.png"
+                            alt="Logo"
+                            className="w-[50px] h-[50px] dark:hidden"
+                        />
+
+                        {/* Dark mode logo (white) */}
+                        <img
+                            src="/darkmode.png"
+                            alt="Logo"
+                            className="w-[50px] h-[50px] hidden dark:block"
+                        />
                         <a className="text-3xl font-bold">recom</a>
                     </div>
                 </div>
@@ -71,7 +84,15 @@ const NavBar = () => {
                 <div className="navbar-end">
                     {
                         user ?
-                            <button onClick={handleLogout} className="btn bg-[#180d38] text-white px-8 rounded-full text-lg">Logout</button>
+                            <div className='flex gap-2 items-center'>
+                                <div className="avatar avatar-online">
+                                    <div className="w-10 h-10 rounded-full">
+                                        <img src={user?.photoURL} />
+                                    </div>
+                                </div>
+                                <button onClick={handleLogout} className="btn bg-[#180d38] text-white px-8 rounded-full text-lg">Logout</button>
+                            </div>
+
                             : <Link to='/login'>
                                 <button className="btn bg-[#180d38] text-white  px-8 rounded-full text-lg">Login</button>
                             </Link>

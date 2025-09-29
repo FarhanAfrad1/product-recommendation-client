@@ -27,7 +27,7 @@ const MyQueryCard = ({ query, column }) => {
                 const fetching = async () => {
 
                     const idToken = await user.getIdToken();
-                    fetch(`https://product-recommendation-server-beige.vercel.app/queries/${query._id}?email=${user.email}`, {
+                    fetch(`http://localhost:3000/queries/${query._id}?email=${user.email}`, {
                         method: "DELETE",
                         headers: {
                             authorization: `Bearer ${idToken}`
@@ -83,17 +83,17 @@ const MyQueryCard = ({ query, column }) => {
                 </div>
                 <div className='space-x-2 flex'>
                     <Link to={`/querydetails/${query._id}`}>
-                        <span className='cursor-pointer bg-gray-100 px-3 rounded-full active:scale-95 transition-all  py-[1px] shadow-black shadow active:shadow-amber-50'>
+                        <span className='cursor-pointer  px-3 rounded-full active:scale-95 transition-all  py-[1px] shadow-black shadow active:shadow-amber-50'>
                             details
                         </span>
                     </Link>
                     <Link to={`/updatequery/${query._id}`}>
-                        <span className='cursor-pointer bg-green-100 px-3 rounded-full active:scale-95 transition-all py-[1px] shadow-black shadow active:shadow-amber-50'>
+                        <span className='cursor-pointer  px-3 rounded-full active:scale-95 transition-all py-[1px] shadow-black shadow active:shadow-amber-50'>
                             update
                         </span>
                     </Link>
 
-                    <span onClick={handleDelete} className='cursor-pointer bg-orange-300 px-3 rounded-full active:scale-95 transition-all py-[1px] shadow-black shadow active:shadow-amber-50'>
+                    <span onClick={handleDelete} className='cursor-pointer px-3 rounded-full active:scale-95 transition-all py-[1px] shadow-black shadow active:shadow-amber-50'>
                         delete
                     </span>
                 </div>

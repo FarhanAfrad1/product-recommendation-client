@@ -11,22 +11,29 @@ import NewsletterSection from '../../Components/NewsletterSection';
 
 const Home = () => {
     useTitle("home | recom");
-    const [column, setColumn] = useState(3);
+
+    const [sortBy, setSortBy] = useState("latest"); // latest | oldest | mostRecommended
+
+
     const [currentPage, setCurrentPage] = useState(1);
-    const cardPerPage = 3;
-    const gridColumnClass = {
-        1: 'lg:grid-cols-1',
-        2: 'lg:grid-cols-2',
-        3: 'lg:grid-cols-3'
-    }[column] || 'lg:grid-cols-3';
-    const handleGridButton = (col) => {
-        if (col === 1) setColumn(1)
-        else if (col === 2) setColumn(2)
-        else setColumn(3)
+    const cardPerPage = 4;
+
+    const allQueries = useLoaderData();
+
+
+
+    // ✅ Sorting
+    if (sortBy === "latest") {
+        allQueries.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    } else if (sortBy === "oldest") {
+        allQueries.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+    } else if (sortBy === "mostRecommended") {
+        allQueries.sort((a, b) => (b.recommendationCount || 0) - (a.recommendationCount || 0));
     }
+
     const date = new Date();
     const formatted = format(date, 'MMMM d, yyyy'); // March 13, 2025
-    const allQueries = useLoaderData();
+    // const allQueries = useLoaderData();
     const totalPages = Math.ceil(allQueries.length / 3);
     const displayUserPerPage = allQueries.slice((currentPage - 1) * cardPerPage, currentPage * cardPerPage);
     console.log(totalPages, displayUserPerPage)
@@ -103,18 +110,25 @@ const Home = () => {
                 </div>
             </div>
             <div className='mt-20'>
-                <h2 className='text-2xl font-medium'>Recent Queries</h2>
+                <h2 className='text-2xl font-medium'>Queries by Users</h2>
+                <p className='mt-1'>Here you can explore real product-related questions asked by our community. Each query reflects genuine user experiences, and the shared recommendations aim to guide others toward better choices. Join the conversation and contribute your own insights to help fellow users.</p>
                 <div className='mt-5'>
-                    <div className='hidden lg:flex'>
-                        <button onClick={() => handleGridButton(1)} className='rounded-l-md px-3 py-1 bg-base-100 text-lg fond-medium cursor-pointer hover:bg-amber-100 active:scale-95 transition-all'><span className='font-bold'>one</span> column layout</button>
-                        <button onClick={() => handleGridButton(2)} className='px-3 py-1 bg-base-100 text-lg fond-medium border-r border-l cursor-pointer hover:bg-amber-100 active:scale-95 transition-all'><span className='font-bold'>two</span> column layout</button>
-                        <button onClick={() => handleGridButton(3)} className='rounded-r-md px-3 py-1 bg-base-100 text-lg fond-medium cursor-pointer hover:bg-amber-100 active:scale-95 transition-all'><span className='font-bold'>three</span> column layout</button>
+                    {/* Controls */}
+                    <div className="my-10 flex justify-end items-center gap-4">
+                        <div>
+                            <label className="font-medium mr-2">Sort By:</label>
+                            <select value={sortBy} onChange={(e) => setSortBy(e.target.value)} className="select select-bordered">
+                                <option value="latest">Latest</option>
+                                <option value="oldest">Oldest</option>
+                                <option value="mostRecommended">Most Recommended</option>
+                            </select>
+                        </div>
                     </div>
-                    <div >
-                        <div className={`grid grid-cols-1 ${gridColumnClass} lg:gap-10 mt-5`}>
-                            {
-                                displayUserPerPage.map(query => <QueryCardHome key={query._id} query={query} column={column}></QueryCardHome>)
-                            }
+                    <div>
+                        <div className='grid grid-cols-1 lg:grid-cols-4 gap-8'>
+                            {displayUserPerPage.map(query => (
+                                <QueryCardHome key={query._id} query={query} />
+                            ))}
                         </div>
 
                         <div>
@@ -141,56 +155,78 @@ const Home = () => {
             <div>
                 <Stats></Stats>
             </div>
-            <div className="max-w-4xl mx-auto mt-16">
-                <div className="flex justify-center items-center gap-2 mb-10">
-                    <MdLiveHelp size={40} className="text-[#180d38] dark:text-primary" />
-                    <h2 className="text-4xl font-bold text-[#180d38] dark:text-base-content">Frequently Asked Questions</h2>
-                </div>
+            <div className="mt-16">
 
-                <div className="join join-vertical w-full space-y-2">
 
+                <h2 className="text-2xl font-bold text-[#180d38] dark:text-base-content">
+                    Frequently Asked Questions
+                </h2>
+
+                {/* ✅ Subheading */}
+                <p className="mb-10 mt-1">
+                    Find quick answers to the most common questions about using our platform.
+                    From submitting queries to sharing recommendations, these FAQs guide you
+                    through the essentials. Explore them to make the most of your experience.
+                </p>
+
+                {/* Accordions */}
+                <div className="join join-vertical w-full">
                     <div className="collapse collapse-arrow bg-base-100 border border-base-300 rounded-box">
-                        <input type="checkbox" />
+                        <input type="checkbox" defaultChecked />
                         <div className="collapse-title text-xl font-medium">
                             How do I submit a product recommendation?
                         </div>
                         <div className="collapse-content">
-                            <p>Visit the query details page and scroll down to the recommendation form. Fill in the details about the alternative product and submit it — your insights help others!</p>
+                            <p>
+                                Visit the query details page and scroll down to the recommendation
+                                form. Fill in the details about the alternative product and submit it
+                                — your insights help others!
+                            </p>
                         </div>
                     </div>
 
                     <div className="collapse collapse-arrow bg-base-100 border border-base-300 rounded-box">
-                        <input type="checkbox" />
+                        <input type="checkbox" defaultChecked />
                         <div className="collapse-title text-xl font-medium">
                             Can I edit or delete my query or recommendation later?
                         </div>
                         <div className="collapse-content">
-                            <p>Yes! You can go to your "My Queries" or "My Recommendations" page and use the edit or delete options provided for each item.</p>
+                            <p>
+                                Yes! You can go to your "My Queries" or "My Recommendations" page and
+                                use the edit or delete options provided for each item.
+                            </p>
                         </div>
                     </div>
 
                     <div className="collapse collapse-arrow bg-base-100 border border-base-300 rounded-box">
-                        <input type="checkbox" />
+                        <input type="checkbox" defaultChecked />
                         <div className="collapse-title text-xl font-medium">
                             Are my recommendations visible to everyone?
                         </div>
                         <div className="collapse-content">
-                            <p>Yes, all approved recommendations will appear publicly under the corresponding query so others can benefit from your experience.</p>
+                            <p>
+                                Yes, all approved recommendations will appear publicly under the
+                                corresponding query so others can benefit from your experience.
+                            </p>
                         </div>
                     </div>
 
                     <div className="collapse collapse-arrow bg-base-100 border border-base-300 rounded-box">
-                        <input type="checkbox" />
+                        <input type="checkbox" defaultChecked />
                         <div className="collapse-title text-xl font-medium">
                             How is the "Recommendation Count" calculated?
                         </div>
                         <div className="collapse-content">
-                            <p>Every time a recommendation is submitted for a query, the count is automatically increased. If a recommendation is deleted, the count is decreased.</p>
+                            <p>
+                                Every time a recommendation is submitted for a query, the count is
+                                automatically increased. If a recommendation is deleted, the count is
+                                decreased.
+                            </p>
                         </div>
                     </div>
-
                 </div>
             </div>
+
             <div>
                 <NewsletterSection></NewsletterSection>
             </div>
